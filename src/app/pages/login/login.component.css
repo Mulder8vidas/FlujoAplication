@@ -1,0 +1,51 @@
+
+.login-container{
+  background: #f7f7f7;
+  width: 98.7vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+h1  {
+  font-family: 'Poppins', sans-serif;
+}
+.header-container{
+  border: 2px solid rgba(134, 137, 145, 0.5);
+  border-radius: 20px;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+
+}
+.cajadata{
+  width: 100%;
+  font-family: "Segoe UI", serif;
+}
+input{
+  margin: 1em 0 ;
+  outline: none;
+  width: 350px;
+  height: 40px;
+  padding: 1em;
+
+
+}
+.caja-container{
+  width: 350px;
+}
+.boton-login{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+button{
+  width: 40%;
+  padding: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(134, 137, 145, 0.5);
+  color: white;
+}

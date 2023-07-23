@@ -1,0 +1,112 @@
+<div class="home-component">
+  <div class="home-form ">
+    <div class="home-header">
+
+        <h1 class="title">Flujo Equivalente Finito</h1>
+
+      <div class="btn-header">
+        <button class="btns" (click)="infinito()">Flujo Inifinito</button>
+        <button class="btns" (click)="dashboard()">Mostrar Grafica</button>
+        <button class="btns" (click)="clear()">Limpiar Ventana</button>
+      </div>
+    </div>
+
+    <div class="line"></div>
+    <form [formGroup]="FormCalculo" >
+      <div class="calc-caja " >
+
+        <div class="anual-container">
+          <div class="titlee">Flujo Anual</div>
+          <div class="inputcss">
+            <label for="flujoAnual">Flujo Anual: </label>
+            <input class="form-control" formControlName="flujoanual" id="flujoAnual"  type="number" >
+          </div>
+          <div class="titlee title-año">Años: <span class="tran">Flujo</span></div>
+          <div class="inputcss">
+            <label for="ku">Ku: </label>
+            <input class="form-control" formControlName="ku" id="ku"  type="number" >
+          </div>
+          <div class="inputcss">
+            <label for="kd">Kd: </label>
+            <input class="form-control" formControlName="kd" id="kd"  type="number" >
+          </div>
+          <div class="inputcss">
+            <label for="xt">Xt:  </label>
+            <input class="form-control" formControlName="xt" id="xt"  type="number" >
+          </div>
+          <div class="inputcss">
+            <label for="Yinput">Y (D/E) </label>
+            <input class="form-control" formControlName="Yinput" id="Yinput"  type="number" >
+          </div>
+          <div class="inputcss">
+            <label for="t-años">T años </label>
+            <input class="form-control" formControlName="taños" id="t-años"  type="number" >
+          </div>
+          <div class="inputcss">
+            <label for="gInpunt">g (Crecimiento anual) </label>
+            <input class="form-control" formControlName="gInpunt" id="gInpunt"  type="number" >
+          </div>
+          <div class="inputcss f-total">
+            <label for="fTotal">Flujo Total </label>
+            <input class="form-control" formControlName="fTotal" id="fTotal"  type="number" >
+          </div>
+        </div>
+        <div class="m-container">
+          <div class="titlee">Flujo con M ajustes</div>
+          <div class="container-input">
+            <div class="inputcss">
+              <label for="majustes">M (ajustes) </label>
+              <input class="form-control" formControlName="majustes" id="majustes"  type="number" >
+            </div>
+            <div class="inputcss">
+              <label for="tTotal">Tiempo total (i) </label>
+              <input class="form-control" formControlName="tTotal" id="tTotal"  type="number" >
+            </div>
+          </div>
+          <div class="container-input">
+            <div class="inputcss">
+              <label for="gmInpunt">Gm </label>
+              <input class="form-control" formControlName="gmInpunt" id="gmInpunt"  type="number" >
+            </div>
+            <div class="inputcss">
+              <label for="yminput">Ym </label>
+              <input class="form-control" formControlName="yminput" id="yminput"  type="number" >
+            </div>
+          </div>
+          <div class="container-input">
+            <div class="inputcss">
+              <label for="fTotales">Flujos Totales </label>
+              <input class="form-control" formControlName="fTotales" id="fTotales"  type="number" >
+            </div>
+          </div>
+          <div class="container-input">
+            <div class="inputcss">
+              <label for="ku1">ku </label>
+              <input class="form-control" formControlName="ku1" id="ku1"  type="number" >
+            </div>
+
+            <div class="inputcss">
+              <label for="kd1">kd </label>
+              <input class="form-control" formControlName="kd1" id="kd1"  type="number" >
+            </div>
+            <div class="inputcss">
+              <label for="xt1">xt </label>
+              <input class="form-control" formControlName="xt1" id="xt1"  type="number" >
+            </div>
+            <div class="inputcss">
+              <label for="timpuestos">T (tasa de impuestos) </label>
+              <input class="form-control" formControlName="timpuestos" id="timpuestos"  type="number" >
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="btn-calcular">
+
+        <input (click)="calcular()" class="calcular-btn" type="button" value="Calcular">
+
+      </div>
+    </form>
+  </div>
+</div>

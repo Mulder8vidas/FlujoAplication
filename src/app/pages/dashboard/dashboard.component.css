@@ -1,0 +1,47 @@
+.dashboard-container{
+  font-family: "Segoe UI", serif;
+  padding: 2em 1em;
+  background: #FAFAFA;
+}
+.title-dashboard{
+  width: 100%;
+  padding: 0 3.5em;
+  text-align: left;
+}
+.title-dashboard h1{
+  font-family: "Segoe UI", "Tahoma","Verdana",serif;
+  font-weight: 400;
+  font-size: 30px;
+  color:#0078d4;
+  padding-left:1em ;
+  margin-bottom: .5em;
+}
+.Line{
+  height: 2px;
+  width: 100%;
+
+  border: 2px solid #0078d4;
+}
+.chartcaja{
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  justify-content: center;
+}
+.chart-container{
+  padding: 1em;
+  margin-top: 2em;
+  width: 46%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.chart-main{
+  display: flex;
+  justify-content: center;
+}
+.chart-container2{
+  padding: 1em;
+  margin-top: 2em;
+  width: 94%;
+  height: 400px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

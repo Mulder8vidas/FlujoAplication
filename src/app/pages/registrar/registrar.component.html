@@ -1,0 +1,21 @@
+<div class="registro-container">
+
+  <div class="cajaRegistro">
+    <h1>Registrate</h1>
+    <form [formGroup]="FormRegistro" >
+      <div class="nombre">
+        <input class="form-control" formControlName="nombre" type="text" placeholder="Ingresa tu nombre">
+        <input  class="form-control" formControlName="apellido" type="text" placeholder="Ingresa apellido">
+      </div>
+      <div class="datos">
+        <input formControlName="username" class="form-control" type="text" placeholder="usuario@sistema.com ">
+        <input formControlName="password" class="form-control" type="password" placeholder="Ingrese su clave">
+      </div>
+      <div class="butt">
+        <button class="btn btn-md btn-primary btn-style" (click)="guardar()">Registrate
+
+        </button> </div>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<div class="home-component">
+  <div class="home-form ">
+    <div class="home-header">
+
+      <h1 class="title">Flujo de caja Infinito</h1>
+
+      <div class="btn-header">
+        <button class="btns" (click)="infinito()">Flujo Finito</button>
+        <button class="btns" (click)="dashboard()">Mostrar Grafica</button>
+        <button class="btns" (click)="clear()">Limpiar Ventana</button>
+      </div>
+    </div>
+
+    <div class="line"></div>
+    <form [formGroup]="FormCalculo" >
+      <div class="calc-caja " >
+
+        <div class="anual-container">
+          <div class="titlee">Flujo de Caja</div>
+          <div class="inputcss">
+            <label for="FCO">FCO: </label>
+            <input class="form-control" formControlName="FCO" id="FCO"  type="number" >
+          </div>
+
+          <div class="inputcss">
+            <label for="VU">VU: </label>
+            <input class="form-control" formControlName="VU" id="VU"  type="number" >
+          </div>
+          <div class="inputcss">
+            <label for="DEUDA">DEUDA: </label>
+            <input class="form-control" formControlName="DEUDA" id="DEUDA"  type="number" >
+          </div>
+          <div class="inputcss">
+            <label for="AI">AI:  </label>
+            <input class="form-control" formControlName="AI" id="AI"  type="number" >
+          </div>
+          <div class="inputcss">
+            <label for="VAL">VAL </label>
+            <input class="form-control" formControlName="VAL" id="VAL"  type="number" >
+          </div>
+          <div class="inputcss">
+            <label for="VL">VL </label>
+            <input class="form-control" formControlName="VL" id="VL"  type="number" >
+          </div>
+          <div class="inputcss f-total">
+            <label for="ku">Ku: </label>
+            <input class="form-control" formControlName="ku" id="ku"  type="number" >
+          </div>
+          <div class="inputcss">
+            <label for="kd">Kd: </label>
+            <input class="form-control" formControlName="kd" id="kd"  type="number" >
+          </div>
+          <div class="inputcss">
+            <label for="xt">xt:  </label>
+            <input class="form-control" formControlName="xt" id="xt"  type="number" >
+          </div>
+          <div class="inputcss ">
+            <label for="E">E </label>
+            <input class="form-control" formControlName="E" id="E"  type="number" >
+          </div>
+          <div class="inputcss f-total">
+            <label for="DE">D/E: </label>
+            <input class="form-control" formControlName="DE" id="DE"  type="number" >
+          </div>
+
+          <div class="inputcss f-total">
+            <label for="KE">KE: </label>
+            <input class="form-control" formControlName="KE" id="KE"  type="number" >
+          </div>
+          <div class="inputcss f-total">
+            <label for="WACC">WACC:  </label>
+            <input class="form-control" formControlName="WACC" id="WACC"  type="number" >
+          </div>
+          <div class="inputcss f-total">
+            <label for="VO">Vo=  </label>
+            <input class="form-control" formControlName="VO" id="VO"  type="number" >
+          </div>
+        </div>
+        <div class="m-container">
+          <div class="container-input">
+            <div class="inputcss">
+              <label for="Wm">Wm </label>
+              <input class="form-control" formControlName="Wm" id="Wm"  type="number" >
+            </div>
+            <div class="inputcss">
+              <label for="Ke1">Ke </label>
+              <input class="form-control" formControlName="Ke" id="Ke1"  type="number" >
+            </div>
+          </div>
+          <div class="container-input">
+            <div class="inputcss">
+              <label for="Kdm">Kdm</label>
+              <input class="form-control" formControlName="Kdm" id="Kdm"  type="number" >
+            </div>
+            <div class="inputcss">
+              <label for="Kum">Kum </label>
+              <input class="form-control" formControlName="Kum" id="Kum"  type="number" >
+            </div>
+            <div class="inputcss">
+              <label for="Gm">Gm </label>
+              <input class="form-control" formControlName="Gm" id="Gm"  type="number" >
+            </div>
+            <div class="inputcss">
+              <label for="Ym">Ym </label>
+              <input class="form-control" formControlName="Ym" id="Ym"  type="number" >
+            </div>
+            <div class="inputcss">
+              <label for="FCL">FCL </label>
+              <input class="form-control" formControlName="FCL" id="FCL"  type="number" >
+            </div>
+            <div class="inputcss">
+              <label for="Xm">Xm </label>
+              <input class="form-control" formControlName="Xm" id="Xm"  type="number" >
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+</div>
+
