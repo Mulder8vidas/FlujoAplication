@@ -1,0 +1,76 @@
+/* app.component.css */
+
+/* Estilo general de la tabla */
+table {
+  width: 100%;
+  max-width: 700px; /* Establece el ancho máximo deseado */
+  border-collapse: collapse;
+  overflow-x: auto; /* Agrega barras de desplazamiento horizontales */
+}
+
+/* Estilo de las celdas de encabezado */
+th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Estilo de las celdas de datos */
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Estilo para resaltar la primera columna (si se desea) */
+td:first-child {
+  font-weight: bold;
+}
+
+/* Estilo para las filas alternas (para mejorar la legibilidad) */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Estilo al pasar el cursor por las filas */
+tr:hover {
+  background-color: #e6e6e6;
+}
+
+/* Estilo para eliminar los bordes verticales internos de la tabla */
+td:first-child,
+th:first-child {
+  border-left: none;
+}
+
+/* Estilo para eliminar los bordes verticales externos de la tabla */
+tr:first-child th {
+  border-top: none;
+}
+
+/* Estilo para eliminar los bordes horizontales del último elemento de la tabla */
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Estilo para hacer que el contenido de las celdas no se desborde */
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Estilo para que el encabezado no se desborde y muestre los puntos suspensivos en caso de ser muy largo */
+th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contenedor{
+  width:1500px;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  padding-top: 50px;
+}

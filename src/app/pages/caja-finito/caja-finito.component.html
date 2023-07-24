@@ -1,1 +1,46 @@
-<p>caja-finito works!</p>
+<!-- Input para que el usuario ingrese el número de columnas a mostrar -->
+<label for="columnsToShow">Mostrar:</label>
+<input type="number" id="columnsToShow" [(ngModel)]="columnsToShow">
+
+<!-- Botones para avanzar y retroceder -->
+<button (click)="prevColumns()">Atrás</button>
+<button (click)="nextColumns()">Adelante</button>
+
+
+<div class="">
+  <span>Flujo de Caja</span>
+</div>
+
+<div class="contenedor">
+  <table>
+
+    <tr>
+
+      <th>--</th>
+     <ng-container>
+       <th *ngFor="let item of colsNumber">
+
+
+
+       </th>
+     </ng-container>
+    </tr>
+
+    <tbody>
+
+    <tr *ngFor="let item2 of keys">
+      <td>{{item2 | uppercase}}</td>
+      <td *ngFor="let item of getVisibleColumns()">
+
+        {{item[item2]}}
+
+      </td>
+
+    </tr>
+
+    </tbody>
+
+
+  </table>
+
+</div>

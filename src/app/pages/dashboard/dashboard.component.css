@@ -31,7 +31,7 @@
 .chart-container{
   padding: 1em;
   margin-top: 2em;
-  width: 46%;
+  width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .chart-main{

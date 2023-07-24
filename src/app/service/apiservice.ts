@@ -51,4 +51,20 @@ export class ApiService {
     return this.http.get<any>(this.urlPub)
 
   }
+
+  public getCajaTabla(){
+
+
+    // @ts-ignore
+    return this.http.post(ApiUrl()+"/caja",JSON.parse(localStorage.getItem("data")));
+
+  }
+
+
+  public dataentrada:any;
+  public datainfientrada:any;
+
+
+
+
 }

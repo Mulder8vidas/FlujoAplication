@@ -6,13 +6,13 @@
 
       <div class="btn-header">
         <button class="btns" (click)="infinito()">Flujo Finito</button>
-        <button class="btns" (click)="dashboard()">Mostrar Grafica</button>
+        <!--<button class="btns" (click)="dashboard()">Mostrar Grafica</button>-->
         <button class="btns" (click)="clear()">Limpiar Ventana</button>
       </div>
     </div>
 
     <div class="line"></div>
-    <form [formGroup]="FormCalculo" >
+    <form [formGroup]="formCalculo" >
       <div class="calc-caja " >
 
         <div class="anual-container">
@@ -84,7 +84,7 @@
             </div>
             <div class="inputcss">
               <label for="Ke1">Ke </label>
-              <input class="form-control" formControlName="Ke" id="Ke1"  type="number" >
+              <input class="form-control" formControlName="Ke1" id="Ke1"  type="number" >
             </div>
           </div>
           <div class="container-input">

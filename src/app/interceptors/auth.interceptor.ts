@@ -39,8 +39,8 @@ export class AuthInterceptor implements HttpInterceptor {
         catchError((error: HttpErrorResponse) => {
           if (error.status == 401) {
 
-            localStorage.clear();
-            sessionStorage.clear();
+            /*localStorage.clear();
+            sessionStorage.clear();*/
             this.router.navigate(['/login']);
           }
 
@@ -50,9 +50,9 @@ export class AuthInterceptor implements HttpInterceptor {
     }catch (e){
 
 
-      console.log(e);
-      localStorage.clear();
-      sessionStorage.clear();
+      /*console.log(e);*/
+     /* localStorage.clear();
+      sessionStorage.clear();*/
       this.router.navigate(['/login']);
       return next.handle(request);
     }
