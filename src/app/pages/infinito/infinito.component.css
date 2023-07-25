@@ -18,16 +18,16 @@
   gap: 2em;
 }
 .btns{
-  background:#0078d4;
+  background:#002060;
   padding: .7em 1.5em;
   color: #f7f7f7;
-  border: #0078d4 solid 2px;
+  border: #002060 solid 2px;
   border-radius: 7px;
   transition-duration: .2s;
   cursor:pointer;
 }
 .btns:hover{
-  color: #0078d4;
+  color: #002060;
   background: #f7f7f7;
 }
 .home-form{
@@ -41,12 +41,12 @@
   font-family: "Segoe UI", "Tahoma","Verdana",serif;
   font-weight: 400;
   font-size: 30px;
-  color:#0078d4
+  color:#002060
 }
 .line {
   width: 100%;
   height: 2px;
-  background-color: #0078d4;
+  background-color: #002060;
   margin-top: .9em;
 
 }
@@ -69,7 +69,7 @@
 }
 .titlee{
   text-align: center;
-  color: #0078d4;
+  color: #002060;
   font-size: 24px;
   margin-bottom: 1em;
 }
@@ -104,15 +104,15 @@ label{
 }
 .calcular-btn{
   width: 30%;
-  background: #0078d4;
+  background: #002060;
   padding: .7em 1.5em;
   color: #f7f7f7;
-  border: #0078d4 solid 2px;
+  border: #002060 solid 2px;
   border-radius: 7px;
   transition-duration: .2s;
 }
 .calcular-btn:hover{
-  color: #0078d4;
+  color: #030f25;
   background: #f7f7f7;
 }
 .title-año{
