@@ -1,25 +1,36 @@
 /* app.component.css */
-
+*{
+  font-family: "Segoe UI", serif;
+}
 /* Estilo general de la tabla */
 table {
   width: 100%;
   max-width: 700px; /* Establece el ancho máximo deseado */
   border-collapse: collapse;
-  overflow-x: auto; /* Agrega barras de desplazamiento horizontales */
+  overflow-x: auto;
+  text-align: center/* Agrega barras de desplazamiento horizontales */
 }
 
 /* Estilo de las celdas de encabezado */
 th {
-  background-color: #f2f2f2;
+  color: white;
+  font-family: "Segoe UI", serif;
+  font-weight: 400;
+  background-color: #007bff;
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ccc;
+
+}
+span{
+  padding-left: 3em;
 }
 
 /* Estilo de las celdas de datos */
 td {
   padding: 10px;
   border-bottom: 1px solid #ccc;
+
 }
 
 /* Estilo para resaltar la primera columna (si se desea) */
@@ -73,4 +84,58 @@ th {
   flex-direction: row;
   margin: auto;
   padding-top: 50px;
+}
+.controls-container{
+  width: 100%;
+  padding: 1em 10em;
+  display:flex;
+  flex-direction: row;
+  height: 60px;
+  justify-content: space-between;
+  align-items:center;
+}
+label{
+  font-weight: 400;
+  font-size: 30px;
+  color: #0078d4;
+}
+.down{
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+}
+.line{
+  width: 84%;
+  height: 2px;
+  background-color: #0078d4;
+
+  margin-left: 8%;
+}
+#columnsToShow{
+  width: 350px;
+  height: 40px;
+  padding:  0 1em;
+  border: 2px solid #0078d4;
+  color: rgb(0, 120, 212,.7);
+  border-radius: 5px;
+}
+button{
+  background:#0078d4;
+  padding: .7em 1.5em;
+  color: #f7f7f7;
+  border: #0078d4 solid 2px;
+  border-radius: 7px;
+  transition-duration: .2s;
+  cursor:pointer;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  text-align: center;
+
+}
+#columnsToShow:focus{
+  background:#f7f7f7;
+  border: none;
+  outline:2px solid #98bbd5;
 }
