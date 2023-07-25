@@ -1,14 +1,19 @@
-<!-- Input para que el usuario ingrese el número de columnas a mostrar -->
-<label for="columnsToShow">Mostrar:</label>
-<input type="number" id="columnsToShow" [(ngModel)]="columnsToShow">
+<div class="controls-container">
+  <div class="up">
+    <label for="columnsToShow">Mostrar:</label>
+  </div>
+  <div class="down">
+    <input  type="number" id="columnsToShow" [(ngModel)]="columnsToShow">
+    <button (click)="prevColumns()">Atrás</button>
+    <button (click)="nextColumns()">Adelante</button>
+  </div>
 
-<!-- Botones para avanzar y retroceder -->
-<button (click)="prevColumns()">Atrás</button>
-<button (click)="nextColumns()">Adelante</button>
 
 
+</div>
+<div class="line"></div>
 <div class="">
-  <span>Flujo de Caja</span>
+
 </div>
 
 <div class="contenedor">
@@ -16,9 +21,10 @@
 
     <tr>
 
-      <th>--</th>
+      <th>  <span>Flujo de Caja</span></th>
+
      <ng-container>
-       <th *ngFor="let item of colsNumber">
+       <th class="aa" *ngFor="let item of colsNumber">
 
 
 
@@ -29,7 +35,7 @@
     <tbody>
 
     <tr *ngFor="let item2 of keys">
-      <td>{{item2 | uppercase}}</td>
+      <td style="text-align: center;background: rgb(5,80,161,.5)">{{item2 | uppercase}}</td>
       <td *ngFor="let item of getVisibleColumns()">
 
         {{item[item2]}}
