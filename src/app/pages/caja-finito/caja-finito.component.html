@@ -26,8 +26,6 @@
      <ng-container>
        <th class="aa" *ngFor="let item of colsNumber">
 
-
-
        </th>
      </ng-container>
     </tr>
@@ -35,7 +33,7 @@
     <tbody>
 
     <tr *ngFor="let item2 of keys">
-      <td style="text-align: center;background: rgb(5,80,161,.5)">{{item2 | uppercase}}</td>
+      <td style="text-align: center;background: rgb(5,80,161,.5);color: white">{{item2 | uppercase}}</td>
       <td *ngFor="let item of getVisibleColumns()">
 
         {{item[item2]}}
