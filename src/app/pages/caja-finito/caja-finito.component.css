@@ -16,7 +16,7 @@ th {
   color: white;
   font-family: "Segoe UI", serif;
   font-weight: 400;
-  background-color: #007bff;
+  background-color: #002060;
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ccc;
@@ -95,7 +95,7 @@ th {
 label{
   font-weight: 400;
   font-size: 30px;
-  color: #0078d4;
+  color: #002060;
 }
 .down{
   display: flex;
@@ -105,7 +105,7 @@ label{
 .line{
   width: 84%;
   height: 2px;
-  background-color: #0078d4;
+  background-color: #002060;
 
   margin-left: 8%;
 }
@@ -113,12 +113,12 @@ label{
   width: 350px;
   height: 40px;
   padding:  0 1em;
-  border: 2px solid #0078d4;
-  color: rgb(0, 120, 212,.7);
+  border: 2px solid #002060;
+  color: rgb(0, 32, 96);
   border-radius: 5px;
 }
 button{
-  background:#0078d4;
+  background:#002060;
   padding: .7em 1.5em;
   color: #f7f7f7;
   border: #0078d4 solid 2px;
