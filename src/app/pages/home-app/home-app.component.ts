@@ -86,5 +86,6 @@ export class HomeAppComponent {
 
   cerrarSesion() {
     localStorage.clear();
+    this.router.navigate([''])
   }
 }

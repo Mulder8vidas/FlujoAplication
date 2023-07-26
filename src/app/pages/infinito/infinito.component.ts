@@ -92,5 +92,6 @@ export class InfinitoComponent {
   }
   cerrarSesion() {
     localStorage.clear();
+    this.router.navigate([''])
   }
 }
