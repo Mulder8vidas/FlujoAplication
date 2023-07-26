@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component, Input} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router,} from '@angular/router';
 import {ApiService} from "../../service/apiservice";
@@ -10,7 +10,10 @@ import {DecimalPipe} from "@angular/common";
   templateUrl: './home-app.component.html',
   styleUrls: ['./home-app.component.css']
 })
-export class HomeAppComponent {
+export class HomeAppComponent implements AfterViewInit{
+
+  @Input()
+  dataload:any=null;
 
   FormCalculo = new FormGroup({
     flujoanual: new FormControl('', Validators.required),
@@ -35,7 +38,13 @@ export class HomeAppComponent {
   displayModal: boolean;
 
   constructor(private router: Router, private apiService: ApiService,private decimalPipe: DecimalPipe) {
+
+
+
     this.displayModal = false
+
+
+
   }
 
   clear() {
@@ -67,6 +76,9 @@ export class HomeAppComponent {
     this.calcularData();
 
     localStorage.setItem("data", JSON.stringify(this.apiService.dataentrada))
+    localStorage.setItem("dataload",JSON.stringify(this.FormCalculo.getRawValue()))
+
+
     window.open('/caja-finito', '_blank');
 
   }
@@ -121,5 +133,11 @@ export class HomeAppComponent {
 
   private formatValue(value: number,decimal:number): string {
     return this.decimalPipe.transform(value, '1.2-'+decimal) || '';
+  }
+
+  ngAfterViewInit(): void {
+    if(this.dataload!=null){
+      this.FormCalculo.patchValue(this.dataload)
+    }
   }
 }

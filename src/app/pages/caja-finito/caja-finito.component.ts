@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ApiService} from "../../service/apiservice";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-caja-finito',
@@ -7,6 +8,31 @@ import {ApiService} from "../../service/apiservice";
   styleUrls: ['./caja-finito.component.css']
 })
 export class CajaFinitoComponent {
+
+
+  FormCalculo = new FormGroup({
+    flujoanual: new FormControl({value: '', disabled: true}),
+    ku: new FormControl({value: '', disabled: true}),
+    kd: new FormControl({value: '', disabled: true}),
+    xt: new FormControl({value: '', disabled: true}),
+    Yinput: new FormControl({value: '', disabled: true}),
+    taños: new FormControl({value: '', disabled: true}),
+    gInpunt: new FormControl({value: '', disabled: true}),
+
+    majustes: new FormControl({value: '', disabled: true}),
+    tTotal: new FormControl({value: '', disabled: true}),
+    gmInpunt: new FormControl({value: '', disabled: true}),
+    yminput: new FormControl({value: '', disabled: true}),
+    fTotales: new FormControl({value: '', disabled: true}),
+    fTotal: new FormControl({value: '', disabled: true}),
+    ku1: new FormControl({value: '', disabled: true}),
+    kd1: new FormControl({value: '', disabled: true}),
+    xt1: new FormControl({value: '', disabled: true}),
+    timpuestos: new FormControl({value: '', disabled: true}),
+  })
+
+  dataload: any = null;
+
 
   data: any[] = [];
 
@@ -26,6 +52,10 @@ export class CajaFinitoComponent {
         this.keys = Object.keys(this.data[0])
         this.colsNumber = Array.from({length: this.data.length + 1}, (_, index) => index);
         this.totalColumns = this.data.length;
+        this.columnsToShow=this.data.length-1
+        this.dataload=localStorage.getItem("dataload")
+        this.FormCalculo.patchValue(JSON.parse(this.dataload));
+
       }
 
     })
