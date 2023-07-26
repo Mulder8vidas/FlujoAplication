@@ -31,13 +31,12 @@ export class LoginComponent  implements OnInit{
       username:usuario==null ? "":usuario,
       password:clave==null ? "":clave
     }
-    alert("ingresando")
     this.adminService.login(data).subscribe((value:any) => {
       alert(value.message);
       if(value.success){
 
         this.utilService.currentUser = value;
-        /*this.router.navigate(['/home'])*/
+        this.router.navigate(['/home'])
       }else{
 
         this.adminService.logeadoUser.next(false)
@@ -78,8 +77,8 @@ export class LoginComponent  implements OnInit{
 
   ngOnInit(): void {
 
-   /* if(localStorage.getItem("eyJ-Aa5.sq4x38fw191&_xy7x:70x")!=null){
+    if(localStorage.getItem("eyJ-Aa5.sq4x38fw191&_xy7x:70x")!=null){
       this.router.navigate(["/home"])
-    }*/
+    }
   }
 }
