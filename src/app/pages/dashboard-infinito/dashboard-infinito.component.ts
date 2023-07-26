@@ -109,4 +109,7 @@ export class DashboardInfinitoComponent {
     this.createChart2();
     this.createChart3();
   }
+  cerrarSesion() {
+    localStorage.clear();
+  }
 }

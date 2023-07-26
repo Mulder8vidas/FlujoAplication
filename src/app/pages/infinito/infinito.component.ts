@@ -90,4 +90,7 @@ export class InfinitoComponent {
     localStorage.setItem("datainfi", JSON.stringify(this.apiService.datainfientrada))
     console.log(this.FormCalculo.getRawValue());
   }
+  cerrarSesion() {
+    localStorage.clear();
+  }
 }

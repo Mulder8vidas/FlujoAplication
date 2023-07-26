@@ -83,4 +83,8 @@ export class HomeAppComponent {
     this.FormCalculo.controls["xt1"].setValue(String(Math.pow((1 + data.ku), (1 / data.majustes)) - 1));
     console.log(this.FormCalculo.getRawValue());
   }
+
+  cerrarSesion() {
+    localStorage.clear();
+  }
 }

@@ -196,4 +196,7 @@ export class DashboardComponent implements OnInit,AfterViewInit{
   exitKey(item:any){
     return this.dataseleccionada.find(value => value.item===item);
   }
+  cerrarSesion() {
+    localStorage.clear();
+  }
 }

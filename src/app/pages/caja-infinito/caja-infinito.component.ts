@@ -124,4 +124,7 @@ export class CajaInfinitoComponent implements OnInit{
   calcularWm(data:any){
     return (1/(1+(this.datainifinita.yde)))*this.calcularKem(data)+(this.datainifinita.yde)/(1+this.datainifinita.yde)*this.calcularKdm(data)*(1-data.tasaimpuesto);
   }
+  cerrarSesion() {
+    localStorage.clear();
+  }
 }

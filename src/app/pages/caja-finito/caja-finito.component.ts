@@ -54,4 +54,7 @@ export class CajaFinitoComponent {
     this.colsNumber= Array.from({ length: datareturn.length+1 }, (_, index) => index);
     return datareturn;
   }
+  cerrarSesion() {
+    localStorage.clear();
+  }
 }
