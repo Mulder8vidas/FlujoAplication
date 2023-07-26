@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginModel} from "../../model/loginModel";
 import {ApiService} from "../../service/apiservice";
@@ -10,7 +10,7 @@ import {UtilService} from "../../service/util.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent  implements OnInit{
   form= new FormGroup({
     email :new FormControl('',[Validators.required,Validators.pattern(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)]),
     password:new FormControl('',Validators.required)
@@ -31,11 +31,13 @@ export class LoginComponent {
       username:usuario==null ? "":usuario,
       password:clave==null ? "":clave
     }
+    alert("ingresando")
     this.adminService.login(data).subscribe((value:any) => {
       alert(value.message);
       if(value.success){
-        this.router.navigate(['/chatHome'])
+
         this.utilService.currentUser = value;
+        /*this.router.navigate(['/home'])*/
       }else{
 
         this.adminService.logeadoUser.next(false)
@@ -60,7 +62,7 @@ export class LoginComponent {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const base64String = reader.result as string;
-      // Aquí puedes hacer lo que necesites con la imagen en formato Base64
+
 
       this.base64image=base64String;
     };
@@ -72,5 +74,12 @@ export class LoginComponent {
   base64image:string="";
   registrar(){
     this.router.navigate(["/registrar"])
+  }
+
+  ngOnInit(): void {
+
+   /* if(localStorage.getItem("eyJ-Aa5.sq4x38fw191&_xy7x:70x")!=null){
+      this.router.navigate(["/home"])
+    }*/
   }
 }

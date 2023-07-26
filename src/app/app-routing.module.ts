@@ -10,20 +10,22 @@ import {MenuMainComponent} from "./pages/menu-main/menu-main.component";
 import {DashboardInfinitoComponent} from "./pages/dashboard-infinito/dashboard-infinito.component";
 import {CajaInfinitoComponent} from "./pages/caja-infinito/caja-infinito.component";
 import {CajaFinitoComponent} from "./pages/caja-finito/caja-finito.component";
+import {tokenGuard} from "./token.guard";
 
 
 
 
 const routes: Routes = [
   {path : '', component :LoginComponent},
-  {path:'registrar',component:RegistrarComponent},
-  {path:'home',component:HomeAppComponent},
-  {path:'dashboard',component:DashboardComponent},
-  {path:'home-infinito',component:InfinitoComponent},
-  {path:'main',component:MenuMainComponent},
-  {path:'dashboard-infinito',component:DashboardInfinitoComponent},
-  {path:'caja-infinito',component:CajaInfinitoComponent},
-  {path:'caja-finito',component:CajaFinitoComponent}
+  {path:'registrar',component:RegistrarComponent,canActivate:[tokenGuard]},
+  {path:'home',component:HomeAppComponent,canActivate:[tokenGuard]},
+  {path:'dashboard',component:DashboardComponent,canActivate:[tokenGuard]},
+  {path:'home-infinito',component:InfinitoComponent,canActivate:[tokenGuard]},
+  {path:'main',component:MenuMainComponent,canActivate:[tokenGuard]},
+  {path:'dashboard-infinito',component:DashboardInfinitoComponent,canActivate:[tokenGuard]},
+  {path:'caja-infinito',component:CajaInfinitoComponent,canActivate:[tokenGuard]},
+  {path:'caja-finito',component:CajaFinitoComponent,canActivate:[tokenGuard]},
+  {path:'**',component:LoginComponent,canActivate:[tokenGuard]}
 ];
 
 @NgModule({
