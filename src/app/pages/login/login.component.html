@@ -1,7 +1,7 @@
 
 <div class="login-container">
   <div class="header-container">
-     <form [formGroup]="form" >
+     <form [formGroup]="form" (ngSubmit)="Login()">
        <div class="caja-container">
          <div class="title-login">
            <h1>Login</h1>
@@ -22,8 +22,8 @@
        </div>
        </div>
        <div class="btn">
-         <div class="boton-login" (click)="Login()">
-           <button type="button" class="btn btn-md btn-primary btn-style" [disabled]="form.invalid" [ngStyle]="{'opacity': form.invalid ? '0.7' : '1'}">Login</button>
+         <div class="boton-login">
+           <button class="btn btn-md btn-primary btn-style" [disabled]="form.invalid" [ngStyle]="{'opacity': form.invalid ? '0.7' : '1'}">Login</button>
          </div>
        </div>
      </form>
