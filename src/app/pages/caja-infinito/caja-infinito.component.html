@@ -2,7 +2,7 @@
   <div class="home-form ">
     <div class="home-header">
 
-      <h1 class="title">Flujo de caja Infinito</h1>
+      <h1 class="title" style="color :#002060">Flujos Perpetuos</h1>
 
       <div class="btn-header">
         <button class="btns" (click)="infinito()">Flujo Finito</button>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="line"></div>
-    <form [formGroup]="formCalculo" >
+    <form [formGroup]="formCalculo"  >
       <div class="calc-caja " >
 
         <div class="anual-container">
@@ -27,18 +27,22 @@
             <input class="form-control" formControlName="VU" id="VU"  type="number" >
           </div>
           <div class="inputcss">
-            <label for="DEUDA">DEUDA: </label>
+            <label for="DEUDA">D: </label>
             <input class="form-control" formControlName="DEUDA" id="DEUDA"  type="number" >
           </div>
-          <div class="inputcss">
+          <div class="inputcss ">
+            <label for="E">E </label>
+            <input class="form-control" formControlName="E" id="E"  type="number" >
+          </div>
+          <div class="inputcss" style="display: none">
             <label for="AI">AI:  </label>
             <input class="form-control" formControlName="AI" id="AI"  type="number" >
           </div>
           <div class="inputcss">
-            <label for="VAL">VAL </label>
+            <label for="VAL">VAI </label>
             <input class="form-control" formControlName="VAL" id="VAL"  type="number" >
           </div>
-          <div class="inputcss">
+          <div class="inputcss" style="display:none;">
             <label for="VL">VL </label>
             <input class="form-control" formControlName="VL" id="VL"  type="number" >
           </div>
@@ -54,10 +58,7 @@
             <label for="xt">xt:  </label>
             <input class="form-control" formControlName="xt" id="xt"  type="number" >
           </div>
-          <div class="inputcss ">
-            <label for="E">E </label>
-            <input class="form-control" formControlName="E" id="E"  type="number" >
-          </div>
+
           <div class="inputcss f-total">
             <label for="DE">D/E: </label>
             <input class="form-control" formControlName="DE" id="DE"  type="number" >
@@ -73,7 +74,7 @@
           </div>
           <div class="inputcss f-total">
             <label for="VO">Vo=  </label>
-            <input class="form-control" formControlName="VO" id="VO"  type="number" >
+            <input class="form-control" formControlName="VO" id="VO"  type="number" style="background:#FFC7CE" >
           </div>
         </div>
         <div class="m-container">

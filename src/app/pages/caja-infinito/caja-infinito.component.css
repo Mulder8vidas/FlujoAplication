@@ -18,10 +18,10 @@
   gap: 2em;
 }
 .btns{
-  background:#0078d4;
+  background:#002060;
   padding: .7em 1.5em;
   color: #f7f7f7;
-  border: #0078d4 solid 2px;
+  border: #002060 solid 2px;
   border-radius: 7px;
   transition-duration: .2s;
   cursor:pointer;
@@ -36,6 +36,8 @@
   height: 90%;
   padding: 3em;
   border-radius: 20px;
+  overflow-y:auto;
+  overflow-x:hidden;
 }
 .home-form h1{
   font-family: "Segoe UI", "Tahoma","Verdana",serif;
@@ -46,13 +48,13 @@
 .line {
   width: 100%;
   height: 2px;
-  background-color: #0078d4;
+  background-color: #002060;
   margin-top: .9em;
 
 }
 .anual-container{
-  overflow-y: scroll;
-  height: 560px;
+
+  height: 100%;
   width: 50%;
   padding: 0 2em;
 }
@@ -62,14 +64,15 @@
 
 }
 .calc-caja{
-  margin-top: 1em;
+  margin-top: 0.5em;
   display: flex;
   flex-direction: row;
   gap: 2em;
+
 }
 .titlee{
   text-align: center;
-  color: #0078d4;
+  color: #002060;
   font-size: 24px;
   margin-bottom: 1em;
 }
