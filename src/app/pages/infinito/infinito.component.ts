@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router, } from '@angular/router';
 import {ApiService} from "../../service/apiservice";
+import {DecimalPipe} from "@angular/common";
 @Component({
   selector: 'app-infinito',
   templateUrl: './infinito.component.html',
@@ -30,7 +31,7 @@ export class InfinitoComponent {
     xt1:new FormControl({ value: '', disabled: true }),
     timpuestos:new FormControl('',Validators.required),
   })
-  constructor(private router:Router,private apiService:ApiService){
+  constructor(private router:Router,private apiService:ApiService,private decimalPipe: DecimalPipe){
 
   }
   clear(){
@@ -63,7 +64,7 @@ export class InfinitoComponent {
       "kda":Math.log((Number(this.FormCalculo.getRawValue().kd) / 100)+1),
       "xta":Math.log((Number(this.FormCalculo.getRawValue().xt) / 100)+1),
       "delta":Math.log((Number(this.FormCalculo.getRawValue().gInpunt) / 100)+1),
-      "factor:":1-Math.exp(-2*(Number(this.FormCalculo.getRawValue().gInpunt) / 100)+1),
+      "factor":1-(Math.exp(-2*(Number(this.FormCalculo.getRawValue().gInpunt))+1)),
     }
 
     localStorage.setItem("datainfi", JSON.stringify(this.apiService.datainfientrada))
@@ -83,15 +84,65 @@ export class InfinitoComponent {
     this.FormCalculo.controls["ku1"].setValue(String(data.kua));
     this.FormCalculo.controls["kd1"].setValue(String(data.kda));
     this.FormCalculo.controls["xt1"].setValue(String(data.xta));
+    console.log(data.factor)
     this.FormCalculo.controls["factor"].setValue(String(data.factor));
     this.FormCalculo.controls["delta"].setValue(String(data.delta));
     this.apiService.datainfientrada.gm=parseFloat(<string>this.FormCalculo.getRawValue().gmInpunt)
     this.apiService.datainfientrada.ym=parseFloat(<string>this.FormCalculo.getRawValue().yminput)
     localStorage.setItem("datainfi", JSON.stringify(this.apiService.datainfientrada))
-    console.log(this.FormCalculo.getRawValue());
+
+
+
+
+
+
+
+
+
+
+    this.applyFormat('flujoanual',2)
+
+
+    this.applyFormat('gmInpunt',6)
+    this.applyFormat('yminput',6)
+    this.applyFormat('ku1',6)
+    this.applyFormat('kd1',6)
+    this.applyFormat('xt1',6)
+    this.applyFormat('fTotal',2)
+    this.applyFormat('fTotales',2)
+
+
+
+
+
+
+
+
+
   }
   cerrarSesion() {
     localStorage.clear();
     this.router.navigate([''])
+  }
+
+  applyFormat(controlName: string,decimal:number) {
+    const control = this.FormCalculo.get(controlName);
+    if (control && control.value !== null) {
+      const parsedValue = this.parseInput(control.value);
+      const formattedValue = this.formatValue(parsedValue,decimal);
+      console.log(controlName)
+      console.log(formattedValue)
+      control.setValue(formattedValue, { emitEvent: false });
+    }
+  }
+
+  private parseInput(value: string): number {
+    return parseFloat(value.replace(/,/g, ''));
+  }
+
+
+
+  private formatValue(value: number,decimal:number): string {
+    return this.decimalPipe.transform(value, '1.2-'+decimal) || '';
   }
 }

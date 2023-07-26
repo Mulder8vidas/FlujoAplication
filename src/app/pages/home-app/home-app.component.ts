@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router,} from '@angular/router';
 import {ApiService} from "../../service/apiservice";
+import {DecimalPipe} from "@angular/common";
 
 
 @Component({
@@ -33,7 +34,7 @@ export class HomeAppComponent {
   })
   displayModal: boolean;
 
-  constructor(private router: Router, private apiService: ApiService) {
+  constructor(private router: Router, private apiService: ApiService,private decimalPipe: DecimalPipe) {
     this.displayModal = false
   }
 
@@ -81,11 +82,44 @@ export class HomeAppComponent {
     this.FormCalculo.controls["ku1"].setValue(String(Math.pow((1 + data.ku), (1 / data.majustes)) - 1));
     this.FormCalculo.controls["kd1"].setValue(String(Math.pow((1 + data.kd), (1 / data.majustes)) - 1));
     this.FormCalculo.controls["xt1"].setValue(String(Math.pow((1 + data.ku), (1 / data.majustes)) - 1));
-    console.log(this.FormCalculo.getRawValue());
+
+
+    this.applyFormat('flujo_anual',2)
+
+
+    this.applyFormat('gmInpunt',6)
+    this.applyFormat('yminput',6)
+    this.applyFormat('ku1',6)
+    this.applyFormat('kd1',6)
+    this.applyFormat('xt1',6)
+    this.applyFormat('fTotal',2)
+    this.applyFormat('fTotales',2)
+
   }
 
   cerrarSesion() {
     localStorage.clear();
     this.router.navigate([''])
+  }
+
+  applyFormat(controlName: string,decimal:number) {
+    const control = this.FormCalculo.get(controlName);
+    if (control && control.value !== null) {
+      const parsedValue = this.parseInput(control.value);
+      const formattedValue = this.formatValue(parsedValue,decimal);
+      console.log(controlName)
+      console.log(formattedValue)
+      control.setValue(formattedValue, { emitEvent: false });
+    }
+  }
+
+  private parseInput(value: string): number {
+    return parseFloat(value.replace(/,/g, ''));
+  }
+
+
+
+  private formatValue(value: number,decimal:number): string {
+    return this.decimalPipe.transform(value, '1.2-'+decimal) || '';
   }
 }

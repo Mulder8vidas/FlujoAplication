@@ -21,10 +21,12 @@
 
     <tr>
 
-      <th>  <span>Flujo de Caja</span></th>
+      <th style="  color: black;">  <span>Flujo de Caja</span></th>
 
      <ng-container>
-       <th class="aa" *ngFor="let item of colsNumber">
+       <th class="aa" *ngFor="let item of colsNumber;let i=index">
+
+
 
        </th>
      </ng-container>
@@ -32,11 +34,30 @@
 
     <tbody>
 
-    <tr *ngFor="let item2 of keys">
-      <td style="text-align: center;background: rgb(5,80,161,.5);color: white">{{item2 | uppercase}}</td>
-      <td *ngFor="let item of getVisibleColumns()">
+    <tr *ngFor="let item2 of keys;let x=index" [ngStyle]="{borderTop: calculateStyle(x) ? 'solid 5px #002060' : ''}">
+      <td *ngIf="x>0" style="text-align: center;background: rgb(5,80,161,.5);color: white">
+        <p  [innerHTML]="(x ==12 ||  x==8 || x==9 || x==10 || x==11 ) ?   (item2 | uppercase|  subindice  ) : (x ==2 ||  x==3 || x==4 || x==5 || x==7 ) ? (item2 | uppercase | supindice) : (item2 | uppercase) "></p>
 
-        {{item[item2]}}
+      </td>
+      <td *ngIf="x==0" style="text-align: center;background:#002060;color: white">
+        {{item2 | uppercase}}
+      </td>
+
+      <td *ngFor="let item of getVisibleColumns();let i=index" [ngStyle]="{background: x==0 ? '#002060' : '',color:x==0 ? 'white':'black'}" >
+
+
+
+
+
+
+
+        <div class="" *ngIf="x>=1 && x<=7;else notnumber" >
+
+          {{item[item2] | number:'1.2-2'}}
+        </div>
+        <ng-template #notnumber>
+          {{x==0 ? (item[item2] ) : (item[item2] | number:'1.2-6') }}
+        </ng-template>
 
       </td>
 

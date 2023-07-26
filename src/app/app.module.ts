@@ -27,6 +27,10 @@ import { MenuMainComponent } from './pages/menu-main/menu-main.component';
 import { DashboardInfinitoComponent } from './pages/dashboard-infinito/dashboard-infinito.component';
 import { CajaFinitoComponent } from './pages/caja-finito/caja-finito.component';
 import { CajaInfinitoComponent } from './pages/caja-infinito/caja-infinito.component';
+import { SubindicePipe } from './pipes/subindice.pipe';
+import { FormatNumberDirective } from './directive/format-number.directive';
+import {DecimalPipe} from "@angular/common";
+import {SupindicePipe} from "./pipes/supindice.pipe";
 
 
 
@@ -63,6 +67,10 @@ export const myRxStompConfig: InjectableRxStompConfig = {
     DashboardInfinitoComponent,
     CajaFinitoComponent,
     CajaInfinitoComponent,
+    SubindicePipe,
+    FormatNumberDirective,
+    SupindicePipe
+
 
 
 
@@ -78,10 +86,11 @@ export const myRxStompConfig: InjectableRxStompConfig = {
     BrowserAnimationsModule,
     ToastModule,
     CalendarModule,
-    FormsModule
+    FormsModule,
+
 
   ],
-  providers: [ApiService,MessageService,UtilService,RxStompService,
+  providers: [ApiService,MessageService,UtilService,RxStompService,DecimalPipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
