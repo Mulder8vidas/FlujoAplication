@@ -93,7 +93,7 @@ export class HomeAppComponent implements AfterViewInit{
     this.FormCalculo.controls["fTotales"].setValue(String(data.flujo_anual * (parseFloat(<string>this.FormCalculo.getRawValue().yminput)) * (1 + parseFloat(<string>this.FormCalculo.getRawValue().gmInpunt)) * (Math.pow((Math.pow((1 + parseFloat(<string>this.FormCalculo.getRawValue().gmInpunt)), data.majustes)), data.taños) - 1) / parseFloat(<string>this.FormCalculo.getRawValue().gmInpunt)));
     this.FormCalculo.controls["ku1"].setValue(String(Math.pow((1 + data.ku), (1 / data.majustes)) - 1));
     this.FormCalculo.controls["kd1"].setValue(String(Math.pow((1 + data.kd), (1 / data.majustes)) - 1));
-    this.FormCalculo.controls["xt1"].setValue(String(data.xt*100));
+    this.FormCalculo.controls["xt1"].setValue(String(Math.pow((1 + data.xt), (1 / data.majustes)) - 1));
 
 
     this.applyFormat('flujo_anual',2)

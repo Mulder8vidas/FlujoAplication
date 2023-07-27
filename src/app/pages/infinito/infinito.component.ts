@@ -125,10 +125,11 @@ export class InfinitoComponent implements OnInit{
     this.FormCalculo.controls["kdm"].setValue(String(this.calcularKdm(this.datainifinita)))
     this.FormCalculo.controls["kum"].setValue(String(this.calcularKum(this.datainifinita)))
     this.FormCalculo.controls["xminput"].setValue(String(this.calcularXm(this.datainifinita)))
-    this.FormCalculo.controls["yminput"].setValue(String(this.datainifinita.ym))
     this.FormCalculo.controls["Deinput"].setValue(String(this.datainifinita.yde))
     this.FormCalculo.controls["keinput"].setValue(String(this.calcularKe(this.datainifinita)))
-
+    this.FormCalculo.controls["wacc"].setValue(String(this.calcularWACC(this.datainifinita)))
+    this.FormCalculo.controls["Vo"].setValue(String(this.calcularVo(this.datainifinita)))
+    this.FormCalculo.controls["Voinput"].setValue(String(this.calcularVa69(this.datainifinita)))
 
 
 
@@ -207,7 +208,7 @@ export class InfinitoComponent implements OnInit{
 
   }
   calcularWACC(data:any){
-    return data.kua*(1-data.yde/(1+data.yde)*data.kda*data.tasaimpuesto/(data.xta-data.delta)*(1-data.delta/data.kua));
+    return data.kua*(1-data.yde/(1+parseFloat(data.yde))*data.kda*data.tasaimpuesto/(data.xta-data.delta)*(1-data.delta/data.kua));
   }
   calcularVai(data:any){
     return data.kda*data.tasaimpuesto*data.yde*Math.pow((1+data.crecimiento_anual),1)*data.flujo_anual/((data.xta-data.crecimiento_anual)*(1+data.yde)*(this.calcularWACC(data)-data.crecimiento_anual))
@@ -233,6 +234,10 @@ export class InfinitoComponent implements OnInit{
 
   calcularVo(data:any){
     return data.delta*data.flujo_anual*(1+data.crecimiento_anual)/(data.crecimiento_anual*(this.calcularWACC(data)-data.delta));
+  }
+  calcularVa69(data:any){
+    return (1+parseFloat(<string>this.FormCalculo.controls["gmInpunt"].value))*parseFloat(<string>this.FormCalculo.controls["yminput"].value)*parseFloat(<string>this.FormCalculo.controls["FCL"].value)/
+      (parseFloat(<string>this.FormCalculo.controls["wmInpunt"].value)-parseFloat(<string>this.FormCalculo.controls["gmInpunt"].value))
   }
 
   calcularXm(data:any){
