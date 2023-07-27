@@ -17,6 +17,7 @@ import {MessageService} from "primeng/api";
 import {UtilService} from "./service/util.service";
 import {CalendarModule} from 'primeng/calendar';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
+import {SpeedDialModule} from 'primeng/speeddial';
 
 import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from "@stomp/ng2-stompjs";
 import { RegistrarComponent } from './pages/registrar/registrar.component';
@@ -69,7 +70,8 @@ export const myRxStompConfig: InjectableRxStompConfig = {
     CajaInfinitoComponent,
     SubindicePipe,
     FormatNumberDirective,
-    SupindicePipe
+    SupindicePipe,
+
 
 
 
@@ -87,6 +89,7 @@ export const myRxStompConfig: InjectableRxStompConfig = {
     ToastModule,
     CalendarModule,
     FormsModule,
+    SpeedDialModule
 
 
   ],

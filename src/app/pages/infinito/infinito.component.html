@@ -2,7 +2,7 @@
   <div class="home-form ">
     <div class="home-header" style="  zoom: 75%;">
 
-      <h1 class="title">Flujo Equivalente Infinito</h1>
+      <h1 class="title">Flujo Equivalente Perpetuo</h1>
 
       <div class="btn-header">
         <button class="btns" (click)="cerrarSesion()">Cerrar Sesion</button>
@@ -17,83 +17,133 @@
       <div class="calc-caja " >
 
         <div class="anual-container">
-          <div class="titlee">Flujo Anual</div>
+
           <div class="inputcss">
-            <label for="flujoAnual">Flujo Anual: </label>
-            <input class="form-control" formControlName="flujoanual" id="flujoAnual"  type="text" >
+            <label class="labels" for="flujoAnual">Flujo Anual: </label>
+            <input class="form-control labels" formControlName="flujoanual" id="flujoAnual"  type="text" >
           </div>
-          <div class="titlee title-año">Años: <span class="tran">Flujo</span></div>
           <div class="inputcss">
-            <label for="ku">Ku: </label>
+            <label for="ku">K<sub>u</sub>: </label>
             <input class="form-control" formControlName="ku" id="ku"  type="text" >
           </div>
           <div class="inputcss">
-            <label for="kd">Kd: </label>
+            <label for="kd">K<sub>d</sub>: </label>
             <input class="form-control" formControlName="kd" id="kd"  type="text" >
           </div>
           <div class="inputcss">
-            <label for="xt">Xt:  </label>
-            <input class="form-control" formControlName="xt" id="xt"  type="text" >
-          </div>
-          <div class="inputcss">
-            <label for="Yinput">Y (D/E) </label>
-            <input class="form-control" formControlName="Yinput" id="Yinput"  type="text" >
-          </div>
-          <div class="inputcss">
-            <label for="t-años">T años </label>
+            <label for="t-años">T: </label>
             <input class="form-control" formControlName="taños" id="t-años"  type="text" >
           </div>
           <div class="inputcss">
-            <label for="gInpunt">g (Crecimiento anual) </label>
+            <label for="xt">X<sub>t</sub>:  </label>
+            <input class="form-control" formControlName="xt" id="xt"  type="text" >
+          </div>
+          <div class="inputcss">
+            <label  style="font-size: 16px" for="Yinput">Y (D/E) Constante </label>
+            <input class="form-control" formControlName="Yinput" id="Yinput"  type="text" >
+          </div>
+
+          <div class="inputcss">
+            <label style="font-size: 14px" for="gInpunt">g (Crecimiento anual) </label>
             <input class="form-control" formControlName="gInpunt" id="gInpunt"  type="text" >
           </div>
-          <div class="inputcss f-total">
-            <label for="fTotal">Flujo Total </label>
-            <input class="form-control" formControlName="fTotal" id="fTotal"  type="text" >
+          <div class="line"></div>
+
+          <div class="inputcss f-total blue">
+            <label for="ttot">t</label>
+            <input class="form-control blue " formControlName="ttot" id="ttot"  type="text" >
           </div>
+
+          <div class="inputcss ">
+            <label for="fcl">FCL </label>
+            <input class="form-control" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="line"></div>
+          <div class="inputcss salt ">
+            <label for="fcl">V<sub>u</sub> </label>
+            <input class="form-control" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="inputcss ">
+            <label for="fcl">D</label>
+            <input class="form-control" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="inputcss ">
+            <label for="fcl">E</label>
+            <input class="form-control" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="inputcss ">
+            <label for="fcl">V<sub>AI</sub></label>
+            <input class="form-control" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="inputcss  red">
+            <label for="fcl">V<sub>0</sub> <sup>71</sup> </label>
+            <input class="form-control red" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="inputcss red">
+            <label for="fcl">V<sub>0</sub> <sup>69</sup></label>
+            <input  class="form-control red" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="line"></div>
+          <div class="inputcss salt ">
+            <label for="fcl">X<sub>t</sub></label>
+            <input class="form-control" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="inputcss salt ">
+            <label for="fcl">K<sub>d</sub></label>
+            <input class="form-control" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="inputcss salt ">
+            <label for="fcl">K<sub>u</sub></label>
+            <input class="form-control" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="inputcss salt ">
+            <label for="fcl">K<sub>e</sub></label>
+            <input class="form-control" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="inputcss salt ">
+            <label for="fcl">D/E</label>
+            <input class="form-control" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="inputcss salt ">
+            <label for="fcl">WACC<sup>17NA</sup></label>
+            <input class="form-control" formControlName="fcl" id="fcl"  type="text" >
+          </div>
+          <div class="line"></div>
+
+
         </div>
         <div class="m-container">
-          <div class="titlee">Flujo con M ajustes</div>
           <div class="container-input">
-            <div class="inputcss">
-              <label for="majustes">M (ajustes) </label>
-              <input class="form-control" formControlName="majustes" id="majustes"  type="text" >
+            <div class="line"></div>
+            <div class="inputcss salt">
+              <label for="majustes"   >M (ajustes) </label>
+              <input class="form-control"  style="background: yellow" formControlName="majustes" id="majustes"  type="text" >
             </div>
-            <div class="inputcss">
+            <div class="inputcss salt">
+              <label for="majustes" >M (ajustes) </label>
+              <input class="form-control"  style="background: yellow" formControlName="majustes" id="majustes"  type="text" >
+            </div>
+            <div class="line "></div>
+            <div class="inputcss salt">
               <label for="tTotal">Tiempo total (i) </label>
-              <input class="form-control" formControlName="tTotal" id="tTotal"  type="text" >
+              <input class="form-control"   formControlName="tTotal" id="tTotal"  type="text" >
             </div>
+            <div class="line"></div>
           </div>
           <div class="container-input">
-            <div class="inputcss">
-              <label for="gmInpunt">Gm </label>
-              <input class="form-control" formControlName="gmInpunt" id="gmInpunt"  type="text" >
-            </div>
-            <div class="inputcss">
-              <label for="yminput">Ym </label>
-              <input class="form-control" formControlName="yminput" id="yminput"  type="text" >
-            </div>
-          </div>
-          <div class="container-input">
-            <div class="inputcss">
-              <label for="fTotales">Flujos Totales </label>
-              <input class="form-control" formControlName="fTotales" id="fTotales"  type="text" >
-            </div>
-          </div>
-          <div class="container-input">
-              <span class="kem">KEM</span>
+
             <div class="inputcss">
 
-              <label for="ku1">ku </label>
+              <label for="ku1">K <sub>u</sub> </label>
               <input class="form-control" formControlName="ku1" id="ku1"  type="text" >
             </div>
 
             <div class="inputcss">
-              <label for="kd1">kd </label>
+              <label for="kd1">K <sub>d</sub> </label>
               <input class="form-control" formControlName="kd1" id="kd1"  type="text" >
             </div>
             <div class="inputcss">
-              <label for="xt1">xt </label>
+              <label for="xt1">X <sub>t</sub> </label>
               <input class="form-control" formControlName="xt1" id="xt1"  type="text" >
             </div>
             <div class="inputcss">
@@ -101,7 +151,7 @@
               <input class="form-control" formControlName="delta" id="delta"  type="text" >
             </div>
             <div class="inputcss">
-              <label for="timpuestos">T (tasa de impuestos) </label>
+              <label for="timpuestos">T  </label>
               <input class="form-control" formControlName="timpuestos" id="timpuestos"  type="text" >
             </div>
 
@@ -109,9 +159,48 @@
               <label for="factor">FACTOR </label>
               <input class="form-control" formControlName="factor" id="factor"  type="text" >
             </div>
+            <div class="line"></div>
+          </div>
+          <div class="container-input">
+
+          </div>
+          <div class="container-input">
+
+
+          </div>
+
+          <div class="line"></div>
+          <div class="inputcss salt">
+            <label for="gmInpunt">W<sub>m</sub></label>
+            <input class="form-control" formControlName="gmInpunt" id="gmInpunt"  type="text" >
+          </div>
+          <div class="inputcss salt">
+            <label for="gmInpunt">K<sub>e</sub></label>
+            <input class="form-control" formControlName="gmInpunt" id="gmInpunt"  type="text" >
+          </div>
+          <div class="inputcss salt">
+            <label for="gmInpunt">K<sub>dm</sub></label>
+            <input class="form-control" formControlName="gmInpunt" id="gmInpunt"  type="text" >
+          </div>
+          <div class="inputcss salt">
+            <label for="gmInpunt">K<sub>um</sub></label>
+            <input class="form-control" formControlName="gmInpunt" id="gmInpunt"  type="text" >
+          </div>
+          <div class="inputcss salt">
+            <label for="gmInpunt">G<sub>m</sub></label>
+            <input class="form-control" formControlName="gmInpunt" id="gmInpunt"  type="text" >
+          </div>
+          <div class="inputcss">
+            <label for="yminput">Y<sub>m</sub> </label>
+            <input class="form-control" formControlName="yminput" id="yminput"  type="text" >
+          </div>
+          <div class="inputcss">
+            <label for="yminput">X<sub>m</sub></label>
+            <input class="form-control" formControlName="yminput" id="yminput"  type="text" >
           </div>
 
         </div>
+
 
       </div>
       <div class="btn-calcular">
@@ -119,7 +208,14 @@
         <input  (click)="calcular()"  class="calcular-btn" type="button" value="Calcular">
 
       </div>
+
+
     </form>
+  </div>
+
+
+  <div style="height: 350px; position: relative;" class="speeddial-delay-demo">
+    <p-speedDial [model]="items" direction="up" showIcon="pi pi-bars" hideIcon="pi pi-times" buttonClassName="p-button-outlined"></p-speedDial>
   </div>
 </div>
 

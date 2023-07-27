@@ -45,21 +45,28 @@
 }
 .line {
   width: 100%;
-  height: 2px;
+  height: 3px;
   background-color: #002060;
   margin-top: .9em;
 
+
+}
+.salt{
+  margin-top: .5em;
 }
 .anual-container{
-
-  width: 50%;
+  margin-left: 7%;
+  width: 36%;
   padding: 0 2em;
+  height: 600px;
+  overflow-y: scroll;
 }
 .m-container{
+  margin-left: 10%;
   width: 50%;
   padding:0 2em;
   overflow-y: scroll;
-  height: 560px;
+  height: 600px;
 }
 .calc-caja{
   margin-top: 1em;
@@ -83,22 +90,23 @@ input {
   padding: .5em 1em;
   outline: none;
   width: 60%;
-  text-align: center;
+  text-align: left;
 }
 label{
   padding: .5em 1em;
   width: 40%;
-  text-align: right;
+  text-align: left;
 }
 .inputcss{
   display: flex;
-  gap: 1em;
+
 }
 .container-input{
   margin-bottom: 2em;
 
 }
 .btn-calcular{
+  margin-top: 2em;
   width: 100%;
   text-align: center ;
 }
@@ -110,6 +118,7 @@ label{
   border: #002060 solid 2px;
   border-radius: 7px;
   transition-duration: .2s;
+  text-align: center;
 }
 .calcular-btn:hover{
   color: #030f25;
@@ -132,3 +141,88 @@ label{
   margin-left: 11.4em;
   font-weight: bold;
 }
+.labels{
+  border: none;
+  border-bottom: 3px solid;
+}
+.blue {
+  background: #002060;
+  color: white;
+  border: none;
+}
+.red{
+  background: rgba(255, 101, 101, 0.5);
+}
+
+
+
+
+:host ::ng-deep .speeddial-linear-demo .p-speeddial-direction-up {
+  left: calc(50% - 2rem);
+  bottom: 0;
+}
+:host ::ng-deep .speeddial-linear-demo .p-speeddial-direction-down {
+  left: calc(50% - 2rem);
+  top: 0;
+}
+:host ::ng-deep .speeddial-linear-demo .p-speeddial-direction-left {
+  right: 0;
+  top: calc(50% - 2rem);
+}
+:host ::ng-deep .speeddial-linear-demo .p-speeddial-direction-right {
+  left: 0;
+  top: calc(50% - 2rem);
+}
+:host ::ng-deep .speeddial-circle-demo .p-speeddial-circle {
+  top: calc(50% - 2rem);
+  left: calc(50% - 2rem);
+}
+:host ::ng-deep .speeddial-circle-demo .p-speeddial-semi-circle.p-speeddial-direction-up {
+  left: calc(50% - 2rem);
+  bottom: 0;
+}
+:host ::ng-deep .speeddial-circle-demo .p-speeddial-semi-circle.p-speeddial-direction-down {
+  left: calc(50% - 2rem);
+  top: 0;
+}
+:host ::ng-deep .speeddial-circle-demo .p-speeddial-semi-circle.p-speeddial-direction-left {
+  right: 0;
+  top: calc(50% - 2rem);
+}
+:host ::ng-deep .speeddial-circle-demo .p-speeddial-semi-circle.p-speeddial-direction-right {
+  left: 0;
+  top: calc(50% - 2rem);
+}
+:host ::ng-deep .speeddial-circle-demo .p-speeddial-quarter-circle.p-speeddial-direction-up-left {
+  right: 0;
+  bottom: 0;
+}
+:host ::ng-deep .speeddial-circle-demo .p-speeddial-quarter-circle.p-speeddial-direction-up-right {
+  left: 0;
+  bottom: 0;
+}
+:host ::ng-deep .speeddial-circle-demo .p-speeddial-quarter-circle.p-speeddial-direction-down-left {
+  right: 0;
+  top: 0;
+}
+:host ::ng-deep .speeddial-circle-demo .p-speeddial-quarter-circle.p-speeddial-direction-down-right {
+  left: 0;
+  top: 0;
+}
+:host ::ng-deep .speeddial-tooltip-demo .p-speeddial-direction-up.speeddial-left {
+  left: 0;
+  bottom: 0;
+}
+:host ::ng-deep .speeddial-tooltip-demo .p-speeddial-direction-up.speeddial-right {
+  right: 0;
+  bottom: 0;
+}
+:host ::ng-deep .speeddial-delay-demo .p-speeddial-direction-up {
+  left: calc(50% - 2rem);
+  bottom: 0;
+}
+:host ::ng-deep .speeddial-mask-demo .p-speeddial-direction-up {
+  right: 0;
+  bottom: 0;
+}
+

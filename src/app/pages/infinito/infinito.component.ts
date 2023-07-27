@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router, } from '@angular/router';
 import {ApiService} from "../../service/apiservice";
 import {DecimalPipe} from "@angular/common";
+import {MenuItem, MessageService} from "primeng/api";
 @Component({
   selector: 'app-infinito',
   templateUrl: './infinito.component.html',
   styleUrls: ['./infinito.component.css']
 })
-export class InfinitoComponent {
+export class InfinitoComponent implements OnInit{
+
   FormCalculo= new FormGroup({
     flujoanual :new FormControl('',Validators.required),
     ku :new FormControl('',Validators.required),
@@ -17,6 +19,7 @@ export class InfinitoComponent {
     Yinput :new FormControl('',Validators.required),
     taños :new FormControl('',Validators.required),
     gInpunt :new FormControl('',Validators.required),
+    ttot :new FormControl('',Validators.required),
 
     majustes:new FormControl ('',Validators.required),
     tTotal: new FormControl({ value: '', disabled: true }),
@@ -31,7 +34,8 @@ export class InfinitoComponent {
     xt1:new FormControl({ value: '', disabled: true }),
     timpuestos:new FormControl('',Validators.required),
   })
-  constructor(private router:Router,private apiService:ApiService,private decimalPipe: DecimalPipe){
+  items: MenuItem[]=[];
+  constructor(private router:Router,private apiService:ApiService,private decimalPipe: DecimalPipe,private messageService: MessageService){
 
   }
   clear(){
@@ -144,5 +148,37 @@ export class InfinitoComponent {
 
   private formatValue(value: number,decimal:number): string {
     return this.decimalPipe.transform(value, '1.2-'+decimal) || '';
+  }
+
+  ngOnInit(): void {
+    this.items = [
+      {
+        icon: 'pi pi-pencil',
+        command: () => {
+          this.messageService.add({ severity: 'info', summary: 'Add', detail: 'Data Added' });
+        }
+      },
+      {
+        icon: 'pi pi-refresh',
+        command: () => {
+          this.messageService.add({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
+        }
+      },
+      {
+        icon: 'pi pi-trash',
+        command: () => {
+          this.messageService.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
+        }
+      },
+      {
+        icon: 'pi pi-upload',
+        routerLink: ['/fileupload']
+      },
+      {
+        icon: 'pi pi-external-link',
+        url: 'http://angular.io'
+
+      }
+    ];
   }
 }

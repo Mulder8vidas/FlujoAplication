@@ -126,3 +126,9 @@ label{
 .f-total{
   margin-top: 2em;
 }
+.totales  {
+  margin-top: 1em;
+  display: flex;
+}
+
+

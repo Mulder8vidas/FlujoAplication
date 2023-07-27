@@ -6,7 +6,7 @@
 
       <div class="btn-header">
         <button class="btns" (click)="cerrarSesion()">Cerrar Sesion</button>
-        <button class="btns" (click)="infinito()">Flujo Inifinito</button>
+        <button class="btns" (click)="infinito()">Flujo Perpetuo</button>
         <button class="btns" (click)="dashboard()">Mostrar Grafica</button>
         <button class="btns" (click)="clear()">Limpiar Ventana</button>
       </div>
@@ -47,14 +47,19 @@
             <label for="gInpunt">g (Crecimiento anual) </label>
             <input class="form-control" formControlName="gInpunt" id="gInpunt"  type="number" >
           </div>
-          <div class="" style="display: inline-flex;">
-            <div class="inputcss f-total">
+          <div class="totales">
+            <div class="total1">
+            <div class="inputcss">
               <label for="fTotal">Flujo Total </label>
-              <input class="form-control" formControlName="fTotal" id="fTotal"  type="text"  >
-              <label for="fTotales">Flujos Totales </label>
-              <input class="form-control" formControlName="fTotales" id="fTotales"  type="text"  >
+              <input class="form-control inp " formControlName="fTotal" id="fTotal"  type="text"  >
+          </div>
             </div>
-
+            <div class="total2">
+          <div class="inputcss">
+            <label for="fTotales" style="font-size: 15px">Flujos Totales </label>
+            <input class="form-control inp"  formControlName="fTotales" id="fTotales"  type="text"  >
+          </div>
+            </div>
           </div>
         </div>
         <div class="m-container">
