@@ -4,6 +4,9 @@ import {Router, } from '@angular/router';
 import {ApiService} from "../../service/apiservice";
 import {DecimalPipe} from "@angular/common";
 import {MenuItem, MessageService} from "primeng/api";
+import {Format} from "@angular-devkit/build-angular/src/builders/extract-i18n/schema";
+import _default from "chart.js/dist/plugins/plugin.tooltip";
+import backgroundColor = _default.defaults.backgroundColor;
 @Component({
   selector: 'app-infinito',
   templateUrl: './infinito.component.html',
@@ -22,6 +25,28 @@ export class InfinitoComponent implements OnInit{
     ttot :new FormControl('',Validators.required),
 
     majustes:new FormControl ('',Validators.required),
+    FCL:new FormControl({value:'',disabled:true}),
+    vu:new FormControl({value:'',disabled:true}),
+    Dinput:new FormControl({value:'',disabled:true}),
+    Einput:new FormControl({value:'',disabled:true}),
+    VAI:new FormControl({value:'',disabled:true}),
+    Vo:new FormControl({value:'',disabled:true}),
+    Voinput:new FormControl({value:'',disabled:true}),
+    xtinput:new FormControl({value:'',disabled:true}),
+    kdinput:new FormControl({value:'',disabled:true}),
+    kuinput:new FormControl({value:'',disabled:true}),
+    keinput:new FormControl({value:'',disabled:true}),
+    Deinput:new FormControl({value:'',disabled:true}),
+    wacc:new FormControl({value:'',disabled:true}),
+    ttaños:new FormControl({value:'',disabled:true}),
+    wmInpunt:new FormControl({value:'',disabled:true}),
+    keinpunt:new FormControl({value:'',disabled:true}),
+    kdm:new FormControl({value:'',disabled:true}),
+    timpuestos:new FormControl({value:'',disabled:true}),
+    kum:new FormControl({ value: '', disabled: true }),
+    xminput :new FormControl({value:'',disabled:true}),
+    totalfinal:new FormControl({value:'',disabled:true}),
+
     tTotal: new FormControl({ value: '', disabled: true }),
     delta: new FormControl({ value: '', disabled: true }),
     factor: new FormControl({ value: '', disabled: true }),
@@ -32,7 +57,7 @@ export class InfinitoComponent implements OnInit{
     ku1:new FormControl({ value: '', disabled: true }),
     kd1:new FormControl({ value: '', disabled: true }),
     xt1:new FormControl({ value: '', disabled: true }),
-    timpuestos:new FormControl('',Validators.required),
+
   })
   items: MenuItem[]=[];
   constructor(private router:Router,private apiService:ApiService,private decimalPipe: DecimalPipe,private messageService: MessageService){
@@ -151,34 +176,9 @@ export class InfinitoComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.items = [
-      {
-        icon: 'pi pi-pencil',
-        command: () => {
-          this.messageService.add({ severity: 'info', summary: 'Add', detail: 'Data Added' });
-        }
-      },
-      {
-        icon: 'pi pi-refresh',
-        command: () => {
-          this.messageService.add({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
-        }
-      },
-      {
-        icon: 'pi pi-trash',
-        command: () => {
-          this.messageService.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
-        }
-      },
-      {
-        icon: 'pi pi-upload',
-        routerLink: ['/fileupload']
-      },
-      {
-        icon: 'pi pi-external-link',
-        url: 'http://angular.io'
 
-      }
-    ];
+
+
+
   }
 }
