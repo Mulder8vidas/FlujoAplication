@@ -12,6 +12,7 @@
       </div>
     </div>
 
+    {{FormCalculo.getRawValue() | json}}
     <div class="line"></div>
     <form [formGroup]="FormCalculo" style="  zoom: 95%;" >
       <div class="calc-caja " >
@@ -97,7 +98,7 @@
             <input class="form-control" formControlName="kuinput" id="kuinput"  type="text" >
           </div>
           <div class="inputcss salt ">
-            <label for="keinput">K<sub>e</sub></label>
+            <label for="keinput">Ks<sub>e</sub></label>
             <input class="form-control" formControlName="keinput" id="keinput" type="text" >
           </div>
           <div class="inputcss salt ">

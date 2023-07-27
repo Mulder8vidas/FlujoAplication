@@ -15,16 +15,16 @@ import backgroundColor = _default.defaults.backgroundColor;
 export class InfinitoComponent implements OnInit{
 
   FormCalculo= new FormGroup({
-    flujoanual :new FormControl('',Validators.required),
-    ku :new FormControl('',Validators.required),
-    kd:new FormControl('',Validators.required),
-    xt :new FormControl('',Validators.required),
-    Yinput :new FormControl('',Validators.required),
-    taños :new FormControl('',Validators.required),
-    gInpunt :new FormControl('',Validators.required),
+    flujoanual :new FormControl('100000',Validators.required),
+    ku :new FormControl('30',Validators.required),
+    kd:new FormControl('15',Validators.required),
+    xt :new FormControl('15',Validators.required),
+    Yinput :new FormControl('0.4',Validators.required),
+    taños :new FormControl('30',Validators.required),
+    gInpunt :new FormControl('1',Validators.required),
     ttot :new FormControl('',Validators.required),
 
-    majustes:new FormControl ('',Validators.required),
+    majustes:new FormControl ('100000',Validators.required),
     FCL:new FormControl({value:'',disabled:true}),
     vu:new FormControl({value:'',disabled:true}),
     Dinput:new FormControl({value:'',disabled:true}),
@@ -38,7 +38,7 @@ export class InfinitoComponent implements OnInit{
     keinput:new FormControl({value:'',disabled:true}),
     Deinput:new FormControl({value:'',disabled:true}),
     wacc:new FormControl({value:'',disabled:true}),
-    ttaños:new FormControl({value:'',disabled:true}),
+    ttaños:new FormControl({value:'1',disabled:false}),
     wmInpunt:new FormControl({value:'',disabled:true}),
     keinpunt:new FormControl({value:'',disabled:true}),
     kdm:new FormControl({value:'',disabled:true}),
@@ -88,58 +88,67 @@ export class InfinitoComponent implements OnInit{
       "taños": this.FormCalculo.getRawValue().taños,
       "crecimiento_anual": Number(this.FormCalculo.getRawValue().gInpunt) / 100,
       "majustes": this.FormCalculo.getRawValue().majustes,
-      "tasaimpuesto": Number(this.FormCalculo.getRawValue().timpuestos) / 100,
+      "tasaimpuesto": Number(this.FormCalculo.getRawValue().taños) / 100,
       "kua":Math.log((Number(this.FormCalculo.getRawValue().ku) / 100)+1),
       "kda":Math.log((Number(this.FormCalculo.getRawValue().kd) / 100)+1),
       "xta":Math.log((Number(this.FormCalculo.getRawValue().xt) / 100)+1),
       "delta":Math.log((Number(this.FormCalculo.getRawValue().gInpunt) / 100)+1),
       "factor":1-(Math.exp(-2*(Number(this.FormCalculo.getRawValue().gInpunt))+1)),
+      ttaños:this.FormCalculo.getRawValue().ttaños,
     }
 
     localStorage.setItem("datainfi", JSON.stringify(this.apiService.datainfientrada))
     this.calcularData();
 
-    window.open('/caja-infinito', '_blank');
 
   }
+  datainifinita:any;
   calcularData() {
     let data = this.apiService.datainfientrada
-
+    this.datainifinita=JSON.parse(JSON.stringify(data));
+    this.FormCalculo.controls["timpuestos"].setValue(String(data.taños/100));
     this.FormCalculo.controls["fTotal"].setValue(String(data.flujo_anual * (1 + data.crecimiento_anual) * (Math.pow((1 + data.crecimiento_anual), data.taños) - 1) / (data.crecimiento_anual)));
-    this.FormCalculo.controls["tTotal"].setValue(String(data.majustes * data.taños));
+    this.FormCalculo.controls["tTotal"].setValue(String(data.majustes * data.ttaños));
     this.FormCalculo.controls["gmInpunt"].setValue(String(Math.pow((1 + data.crecimiento_anual), (1 / data.majustes)) - 1));
     this.FormCalculo.controls["yminput"].setValue(String(parseFloat(<string>this.FormCalculo.getRawValue().gmInpunt) / data.crecimiento_anual * Math.pow((1 + parseFloat(<string>this.FormCalculo.getRawValue().gmInpunt)), (data.majustes - 1))));
     this.FormCalculo.controls["fTotales"].setValue(String(data.flujo_anual * (parseFloat(<string>this.FormCalculo.getRawValue().yminput)) * (1 + parseFloat(<string>this.FormCalculo.getRawValue().gmInpunt)) * (Math.pow((Math.pow((1 + parseFloat(<string>this.FormCalculo.getRawValue().gmInpunt)), data.majustes)), data.taños) - 1) / parseFloat(<string>this.FormCalculo.getRawValue().gmInpunt)));
     this.FormCalculo.controls["ku1"].setValue(String(data.kua));
     this.FormCalculo.controls["kd1"].setValue(String(data.kda));
     this.FormCalculo.controls["xt1"].setValue(String(data.xta));
-    console.log(data.factor)
     this.FormCalculo.controls["factor"].setValue(String(data.factor));
     this.FormCalculo.controls["delta"].setValue(String(data.delta));
     this.apiService.datainfientrada.gm=parseFloat(<string>this.FormCalculo.getRawValue().gmInpunt)
     this.apiService.datainfientrada.ym=parseFloat(<string>this.FormCalculo.getRawValue().yminput)
-    localStorage.setItem("datainfi", JSON.stringify(this.apiService.datainfientrada))
+
+
+
+    this.FormCalculo.controls["kdm"].setValue(String(this.calcularKdm(this.datainifinita)))
+    this.FormCalculo.controls["kum"].setValue(String(this.calcularKum(this.datainifinita)))
+    this.FormCalculo.controls["xminput"].setValue(String(this.calcularXm(this.datainifinita)))
+    this.FormCalculo.controls["yminput"].setValue(String(this.datainifinita.ym))
+    this.FormCalculo.controls["Deinput"].setValue(String(this.datainifinita.yde))
+    this.FormCalculo.controls["keinput"].setValue(String(this.calcularKe(this.datainifinita)))
 
 
 
 
 
-
-
-
+    this.datainifinita=data;
+    this.FormCalculo.controls["FCL"].setValue(this.datainifinita.flujo_anual)
+    this.FormCalculo.controls["kuinput"].setValue(this.datainifinita.kua)
+    this.FormCalculo.controls["kdinput"].setValue(this.datainifinita.kda)
+    this.FormCalculo.controls["xtinput"].setValue(this.datainifinita.xta)
 
 
     this.applyFormat('flujoanual',2)
-
-
-    this.applyFormat('gmInpunt',6)
-    this.applyFormat('yminput',6)
+    this.applyFormat('gmInpunt',9)
+    this.applyFormat('yminput',9)
+    this.applyFormat('xminput',8)
     this.applyFormat('ku1',6)
     this.applyFormat('kd1',6)
     this.applyFormat('xt1',6)
     this.applyFormat('fTotal',2)
     this.applyFormat('fTotales',2)
-
 
 
 
@@ -177,8 +186,61 @@ export class InfinitoComponent implements OnInit{
 
   ngOnInit(): void {
 
+  }
+
+
+  calcularKum(data:any){
+    return Math.pow((1+data.ku),(1/data.majustes))-1;
+  }
+
+  calcularKem(data:any){
+    return this.calcularKum(data)+((data.yde))*(this.calcularKum(data)-this.calcularKdm(data))-(this.calcularKum(data)-this.calcularXm(data))*(this.calcularKdm(data)*data.tasaimpuesto*(data.yde))/(this.calcularXm(data)-data.gm)
+  }
+
+  calcularKdm(data:any){
+    return Math.pow((1+data.kd),(1/data.majustes))-1;
+  }
+
+  calcularVl(data:any){
+
+    return data.delta*data.flujo_anual*(1+data.crecimiento_anual)/(data.crecimiento_anual*(this.calcularWACC(data)-data.delta));
+
+  }
+  calcularWACC(data:any){
+    return data.kua*(1-data.yde/(1+data.yde)*data.kda*data.tasaimpuesto/(data.xta-data.delta)*(1-data.delta/data.kua));
+  }
+  calcularVai(data:any){
+    return data.kda*data.tasaimpuesto*data.yde*Math.pow((1+data.crecimiento_anual),1)*data.flujo_anual/((data.xta-data.crecimiento_anual)*(1+data.yde)*(this.calcularWACC(data)-data.crecimiento_anual))
+  }
+
+  calcularE(data:any){
+    return Math.pow((1+data.crecimiento_anual),1)*data.flujo_anual/((1+data.yde)*(this.calcularWACC(data)-data.crecimiento_anual))
+  }
+
+
+  calcularKe(data:any){
+
+
+
+     return parseFloat(data.kua)+parseFloat(data.yde)*(data.kua-data.kda)-(data.kua-data.xta)*data.kda*data.tasaimpuesto*data.yde/(data.xta-data.delta)
+    //use parseFloat to  all variables
+
+
 
 
 
   }
+
+  calcularVo(data:any){
+    return data.delta*data.flujo_anual*(1+data.crecimiento_anual)/(data.crecimiento_anual*(this.calcularWACC(data)-data.delta));
+  }
+
+  calcularXm(data:any){
+    return (Math.pow((1+data.xt),(1/data.majustes)))-1;
+  }
+  calcularWm(data:any){
+    return (1/(1+(this.apiService.datainfientrada.yde)))*this.calcularKem(data)+(this.apiService.datainfientrada.yde)/(1+this.apiService.datainfientrada.yde)*this.calcularKdm(data)*(1-data.tasaimpuesto);
+  }
+
+
 }
