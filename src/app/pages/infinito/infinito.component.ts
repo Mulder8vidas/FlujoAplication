@@ -152,37 +152,6 @@ export class InfinitoComponent implements OnInit{
 
 
 
-    this.applyFormat('gmInpunt',9)
-    this.applyFormat('yminput',9)
-    this.applyFormat('ku1',8)
-    this.applyFormat('timpuestos',8)
-    this.applyFormat('factor',8)
-
-    this.applyFormat('kd1',8)
-    this.applyFormat('xt1',8)
-    this.applyFormat('delta',8)
-    this.applyFormat('fTotal',2)
-    this.applyFormat('fTotales',2)
-    this.applyFormat('wmInpunt',8)
-    this.applyFormat('keinpunt',8)
-    this.applyFormat('kdm',10)
-    this.applyFormat('kum',10)
-
-    this.applyFormat('vu',2)
-    this.applyFormat('Dinput',2)
-    this.applyFormat('Einput',2)
-    this.applyFormat('VAI',2)
-    this.applyFormat('Vo',2)
-    this.applyFormat('Voinput',2)
-
-
-    this.applyFormat('kuinput',9)
-    this.applyFormat('kdinput',9)
-    this.applyFormat('xtinput',9)
-    this.applyFormat('keinput',9)
-    this.applyFormat('wacc',4)
-    this.applyFormat('xminput',9)
-    this.applyFormat('totalfinal',2)
 
 
 

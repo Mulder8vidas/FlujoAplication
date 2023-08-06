@@ -39,7 +39,7 @@ export class CajaFinitoComponent {
   keys: any[] = [];
 
   colsNumber: any[] = [];
-
+  colsnumberempy:any[]=[];
   totalColumns = 800;
   columnsToShow = 10;
   currentStartIndex = 0;
@@ -52,7 +52,12 @@ export class CajaFinitoComponent {
         this.keys = Object.keys(this.data[0])
         this.colsNumber = Array.from({length: this.data.length + 1}, (_, index) => index);
         this.totalColumns = this.data.length;
-        this.columnsToShow=this.data.length-1
+        if(this.data.length>20){
+          this.columnsToShow=20
+        }else{
+          this.columnsToShow=this.data.length-1
+        }
+
         this.dataload=localStorage.getItem("dataload")
         this.FormCalculo.patchValue(JSON.parse(this.dataload));
 

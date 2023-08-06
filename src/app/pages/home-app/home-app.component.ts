@@ -96,6 +96,7 @@ export class HomeAppComponent implements AfterViewInit{
     this.FormCalculo.controls["xt1"].setValue(String(Math.pow((1 + data.xt), (1 / data.majustes)) - 1));
 
 
+
     this.applyFormat('flujo_anual',2)
 
 
