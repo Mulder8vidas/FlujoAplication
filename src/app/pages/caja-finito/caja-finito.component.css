@@ -237,3 +237,9 @@ input {
 .f-total{
   margin-top: 2em;
 }
+.cajaapp{
+  margin-top: 1em;
+  padding-top: 2em;
+  display: flex;
+  width: 100%;
+}

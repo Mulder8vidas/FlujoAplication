@@ -11,6 +11,8 @@ import {DashboardInfinitoComponent} from "./pages/dashboard-infinito/dashboard-i
 import {CajaInfinitoComponent} from "./pages/caja-infinito/caja-infinito.component";
 import {CajaFinitoComponent} from "./pages/caja-finito/caja-finito.component";
 import {tokenGuard} from "./token.guard";
+import {SimuladorPerpetuoComponent} from "./pages/simulador-perpetuo/simulador-perpetuo.component";
+import {CrearSimulacionComponent} from "./pages/crear-simulacion/crear-simulacion.component";
 
 
 
@@ -25,7 +27,9 @@ const routes: Routes = [
   {path:'dashboard-infinito',component:DashboardInfinitoComponent,canActivate:[tokenGuard]},
   {path:'caja-infinito',component:CajaInfinitoComponent,canActivate:[tokenGuard]},
   {path:'caja-finito',component:CajaFinitoComponent,canActivate:[tokenGuard]},
-  {path:'**',component:LoginComponent,canActivate:[tokenGuard]}
+  {path:'simulador',component:SimuladorPerpetuoComponent,canActivate:[tokenGuard]},
+  {path:'crear-simulacion',component:CrearSimulacionComponent},
+  {path:'**',component:LoginComponent,canActivate:[tokenGuard]},
 ];
 
 @NgModule({

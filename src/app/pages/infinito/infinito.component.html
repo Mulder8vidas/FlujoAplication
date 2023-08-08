@@ -5,9 +5,9 @@
       <h1 class="title">Flujo Equivalente Perpetuo</h1>
 
       <div class="btn-header">
+        <button class="btns" (click)="simulacion()" >Simulaciones</button>
         <button class="btns" (click)="cerrarSesion()">Cerrar Sesion</button>
         <button class="btns" (click)="infinito()">Flujo Finito</button>
-        <!--<button class="btns" (click)="dashboard()">Mostrar Grafica</button>-->
         <button class="btns" (click)="clear()">Limpiar Ventana</button>
       </div>
     </div>
@@ -119,19 +119,12 @@
         <div class="m-container">
           <div class="container-input">
             <div class="line"></div>
-            <div class="inputcss salt">
-              <label for="ttaños"   >T(t años) </label>
-              <input class="form-control"  style="background: yellow" formControlName="ttaños" id="ttaños"  type="text" >
-            </div>
+
             <div class="inputcss salt">
               <label for="majustes" >M (ajustes) </label>
               <input class="form-control"  style="background: yellow" formControlName="majustes" id="majustes"  type="text" >
             </div>
             <div class="line "></div>
-            <div class="inputcss salt">
-              <label for="tTotal">Tiempo total (i) </label>
-              <input class="form-control"   formControlName="tTotal" id="tTotal"  type="text" >
-            </div>
             <div class="line"></div>
           </div>
           <div class="container-input">
@@ -219,15 +212,7 @@
 
 
  <div class="contenedor-btn">
-   <input type="checkbox" id="btn-mas">
-   <div class="redes">
-     <a class="excel" ><i class="pi pi-file-excel"></i></a>
-     <a ><i class="pi pi-file-pdf"></i></a>
-   </div>
-   <div class="btn-mas">
-     <label  class="icon-mas2" for="btn-mas"> <i class="pi pi-bars aea"></i></label>
-   </div>
-
+   <app-float-btn></app-float-btn>
  </div>
 </div>
 

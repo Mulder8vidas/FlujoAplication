@@ -168,6 +168,9 @@ export class InfinitoComponent implements OnInit{
     localStorage.clear();
     this.router.navigate([''])
   }
+  simulacion() {
+    this.router.navigate(['/simulador'])
+  }
 
   applyFormat(controlName: string,decimal:number) {
     const control = this.FormCalculo.get(controlName);

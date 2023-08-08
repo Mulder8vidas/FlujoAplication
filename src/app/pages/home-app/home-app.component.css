@@ -97,6 +97,7 @@ label{
   margin-bottom: 2em;
 }
 .btn-calcular{
+  margin-top: 100px;
   width: 100%;
   text-align: center ;
 }
@@ -130,8 +131,6 @@ label{
   margin-top: 1em;
   display: flex;
 }
-
-
 
 
 #btn-mas{
@@ -190,9 +189,11 @@ a{
   text-decoration: none;
   background: #002060;
 }
-.excel{
-  background: #175935!important;
+.excel {
+  background: #175935 !important;
 }
+
+
 .aea{
   padding-bottom:  20px;
 }

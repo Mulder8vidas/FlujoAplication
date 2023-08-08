@@ -32,6 +32,10 @@ import { SubindicePipe } from './pipes/subindice.pipe';
 import { FormatNumberDirective } from './directive/format-number.directive';
 import {DecimalPipe} from "@angular/common";
 import {SupindicePipe} from "./pipes/supindice.pipe";
+import { FloatBtnComponent } from './components/float-btn/float-btn.component';
+import { SimuladorPerpetuoComponent } from './pages/simulador-perpetuo/simulador-perpetuo.component';
+import { CrearSimulacionComponent } from './pages/crear-simulacion/crear-simulacion.component';
+import { MAjustesComponent } from './components/m-ajustes/m-ajustes.component';
 
 
 
@@ -71,6 +75,10 @@ export const myRxStompConfig: InjectableRxStompConfig = {
     SubindicePipe,
     FormatNumberDirective,
     SupindicePipe,
+    FloatBtnComponent,
+    SimuladorPerpetuoComponent,
+    CrearSimulacionComponent,
+    MAjustesComponent,
 
 
 
