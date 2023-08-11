@@ -1,0 +1,120 @@
+<div class="simulador-component">
+  <div class="home-form ">
+    <div class="home-header" style="  zoom: 75%;">
+
+      <h1 class="title">Simulacion: </h1>
+
+      <div class="btn-header">
+
+      </div>
+    </div>
+
+    <div class="line"></div>
+    <div class="container-data">
+      <div class="container-flujo">
+
+          <div class="anual">
+            <form [formGroup]="FormCalculo" style="  zoom: 95%;">
+              <div class="calc-caja ">
+
+                <div class="anual-container">
+                  <div class="titlee">Flujo Anual</div>
+                  <div class="inputcss">
+                    <label for="fcl">FCL: </label>
+                    <input class="form-control" formControlName="fcl" id="fcl" type="number">
+                  </div>
+                  <div class="titlee " >   Años: </div>
+                  <div class="inputcss">
+                    <label for="ku">Ku: </label>
+                    <input class="form-control" formControlName="ku" id="ku" type="number">
+                  </div>
+                  <div class="inputcss">
+                    <label for="kd">Kd: </label>
+                    <input class="form-control" formControlName="kd" id="kd" type="number">
+                  </div>
+                  <div class="inputcss">
+                    <label for="xt">Xt: </label>
+                    <input class="form-control" formControlName="xt" id="xt" type="number">
+                  </div>
+                  <div class="inputcss">
+                    <label for="Yinput">Y (D/E) </label>
+                    <input class="form-control" formControlName="Yinput" id="Yinput" type="number">
+                  </div>
+                  <div class="inputcss">
+                    <label for="t-años">T años </label>
+                    <input class="form-control" formControlName="taños" id="t-años" type="number"
+                           style="background: rgb(9,132,227,.8)">
+                  </div>
+                  <div class="inputcss">
+                    <label  style="font-size: 11px" for="gInpunt">g (Crecimiento anual) </label>
+                    <input class="form-control" formControlName="gInpunt" id="gInpunt" type="number">
+                  </div>
+                  <div class="inputcss">
+                    <label  style="font-size: 11px" for="ftotal">Flujo total </label>
+                    <input class="form-control" formControlName="ftotal" id="ftotal" type="number">
+                  </div>
+                  <button class="btn" (click)="showModalDialog()" >Agregar M Ajustes</button>
+                  <p-dialog header="Flujo con M ajustes" [(visible)]="displayModal"  [modal]="true" [style]="{width: '30vw'}"
+                            [draggable]="false" [resizable]="false">
+                    <app-m-ajustes></app-m-ajustes>
+
+                    <ng-template pTemplate="footer">
+                      <button class="btn" (click)="displayModal=false">Guardar M Ajustes </button>
+
+                    </ng-template>
+                  </p-dialog>
+
+                </div>
+
+
+
+              </div>
+            </form>
+
+
+          </div>
+        <div class="container-table">
+          <div class="table">
+            <p-table [value]="tabla">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>M</th>
+                  <th>Ln (M)</th>
+                  <th>Vl</th>
+                  <th>Variacion</th>
+                  <th>%</th>
+                  <th>Infinito (∞)</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-table>
+                <tr>
+                  <td>{{table.m}}</td>
+                  <td>{{table.ln}}</td>
+                  <td>{{table.vl}}</td>
+                  <td>{{table.variacion}}</td>
+                  <td>{{table.porcentaje}}</td>
+                  <td>{{table.infinito}}</td>
+
+                </tr>
+              </ng-template>
+            </p-table>
+
+          </div>
+          <div class="dashboard">
+            <div class="chartcaja">
+              <div class="chart-container">
+                <canvas id="MyChart">{{ chart }}</canvas>
+                <app-bar-chart></app-bar-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="contenedor-btn">
+          <app-float-btn></app-float-btn>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

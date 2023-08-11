@@ -1,0 +1,217 @@
+.simulador-component{
+  font-family: "Segoe UI", "Tahoma","Verdana",serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: rgb(128, 130, 127,.5);
+  justify-content: center;
+  align-items: center;
+
+}
+.home-header{
+  width: 100%;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+.btn-header{
+  display: flex;
+  gap: 2em;
+
+}
+.btns{
+  background:#002060;
+  padding: .7em 1.5em;
+  color: #f7f7f7;
+  border: #0078d4 solid 2px;
+  border-radius: 7px;
+  transition-duration: .2s;
+  cursor:pointer;
+  font-size:16px
+}
+.btns:hover{
+  color: #06193f;
+  background: #f7f7f7;
+}
+.home-form{
+  background: #f7f7f7;
+  width: 80%;
+  height: 98%;
+  padding: 1em 3em;
+  border-radius: 20px;
+}
+.home-form h1{
+  font-family: "Segoe UI", "Tahoma","Verdana",serif;
+  font-weight: 400;
+  font-size: 35px;
+  color:#002060
+}
+.line {
+  width: 100%;
+  height: 2px;
+  background-color: #002060;
+  margin-top: .2em;
+
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  text-align: center;
+
+}
+input {
+  padding: .5em 1em;
+  outline: none;
+  width: 60%;
+  text-align: center;
+}
+label{
+
+  width: 40%;
+  text-align: right;
+}
+.inputcss{
+  display: flex;
+  gap: 1em;
+}
+
+
+
+.calcular-btn:hover{
+  color: #002060;
+  background: #f7f7f7;
+}
+.title-año{
+  margin-top: 1em;
+}
+.tran{
+  color: transparent;
+}
+.inputcss{
+  margin-bottom: .5em;
+}
+.f-total{
+  margin-top: 2em;
+}
+.totales  {
+  margin-top: 1em;
+  display: flex;
+}
+
+
+#btn-mas{
+  display: none;
+}
+.contenedor-btn{
+  position: fixed;
+  bottom: 50px;
+  right: 80px;
+}
+.redes a,.icon-mas2{
+  display: block;
+  text-decoration: none;
+  background: #cc2b2b;
+  color: #fff;
+  height: 55px;
+  width: 55px;
+  line-height: 55px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0,0,0,.4);
+  transition: all 500ms ease;
+  text-align: center;
+}
+.redes a:hover{
+  background: #fff;
+  color: #cc2b2b;
+}
+.redes a{
+  margin-bottom: -15px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#btn-mas:checked~.redes a{
+  margin-bottom: 10px;
+  opacity: 1;
+  visibility: visible;
+}
+a{
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+.icon-mas2{
+  text-align: center;
+
+}
+.btn-mas{
+  text-align: center;
+  display: flex;
+
+
+}
+.icon-mas2 {
+  cursor: pointer;
+  text-decoration: none;
+  background: #002060;
+}
+.excel {
+  background: #175935 !important;
+}
+
+
+.aea{
+  padding-bottom:  20px;
+}
+.container-table{
+  height: 45%;
+  margin-top: 3%;
+  padding: 0 1em;
+
+}
+.container-flujo{
+  height: 50%;
+  padding: 0 1em;
+  margin-top: 1%;
+
+}
+
+.container-data{
+  height: 90%;
+
+}
+.anual{
+  width: 25%;
+  height: 100%;
+}
+.titlee{
+  text-align: center;
+  margin-bottom: 5px;
+  background: #030f25;
+  color: white;
+}
+.btn{
+  width: 100%;
+  margin-top: .5em;
+  padding: .5em 2em;
+  border: none;
+  background: #030f25;
+  color: white;
+  cursor: pointer;
+}
+.container-table{
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+  gap: 1em;
+}
+.table{
+  width: 50%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.dashboard{
+  width: 50%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
