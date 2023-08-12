@@ -169,7 +169,7 @@ export class InfinitoComponent implements OnInit{
     this.router.navigate([''])
   }
   simulacion() {
-    this.router.navigate(['/simulador'])
+    this.router.navigate(['/crear-simulacion'])
   }
 
   applyFormat(controlName: string,decimal:number) {

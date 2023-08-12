@@ -19,12 +19,6 @@ export interface TablaCalculo{
   grupodata:any
 }
 
-export interface listaAllSimulaciones{
-  id:number,
-  majustes:any,
-  simulaciones:TablaCalculo[]
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +27,7 @@ export class SimulacionService {
   _data:BehaviorSubject<any>=new BehaviorSubject<boolean>(false);
   public data$=this._data.asObservable();
 
-  public listAllSimulaciones:listaAllSimulaciones[]=[];
+  public listAllSimulaciones:any[]=[];
   public countAllSimulaciones:number=1;
 
 
@@ -58,7 +52,14 @@ export class SimulacionService {
 
   constructor() {
 
+    this.formGroup.valueChanges.subscribe(value => {
 
+
+
+
+
+
+    })
 
   }
 
@@ -66,14 +67,6 @@ export class SimulacionService {
     let value=this.formGroup.getRawValue();
     this.formGroup.controls['ftotal'].setValue(this.calcularFtotal((value.gInpunt/100),value.taños,value.fcl), {emitEvent: false})
     this.listMajustes.push(value);
-
-
-    this.listAllSimulaciones.push({
-      id:this.countAllSimulaciones,
-      majustes:this.formGroup.getRawValue(),
-      simulaciones:this.listaSimulaciones
-    });
-
   }
 
   cambiarVariable(){
@@ -87,11 +80,8 @@ export class SimulacionService {
 
   calcularSimulacion(data:any,currentFormGroup:FormGroup){
 
-    this.listAllSimulaciones.forEach(value => {
 
-    })
-
-
+    /*"crecimiento_anual": Number(this.FormCalculo.getRawValue().gInpunt) / 100,*/
     currentFormGroup.controls["tTotal"].setValue(currentFormGroup.getRawValue().majustes*this.formGroup.getRawValue().taños, {emitEvent: false});
     currentFormGroup.controls["gmInpunt"].setValue(String(Math.pow((1 + (Number(this.formGroup.getRawValue().gInpunt) / 100)), (1 / currentFormGroup.getRawValue().majustes)) - 1));
     currentFormGroup.controls["yminput"].setValue(String(parseFloat(<string>currentFormGroup.getRawValue().gmInpunt) / (Number(this.formGroup.getRawValue().gInpunt) / 100) * Math.pow((1 + parseFloat(<string>currentFormGroup.getRawValue().gmInpunt)), (data.majustes - 1))));
