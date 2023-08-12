@@ -1,0 +1,47 @@
+<div class="container-table">
+  <div class="table">
+
+    <table class="excel-table">
+      <tr >
+        <th>M</th>
+        <th>Ln (M)</th>
+        <th>Vl</th>
+        <th>Variacion</th>
+        <th>%</th>
+        <th>Infinito (∞)</th>
+      </tr>
+
+      <tr *ngFor="let table of simulacionService.listaSimulaciones" >
+        <td>{{table.majustes}}</td>
+        <td>{{table.ln | number:'1.2-2'}}</td>
+        <td>{{table.vl | number:'1.2-2'}}</td>
+        <td>{{table.variacion | number:'1.2-2'}}</td>
+        <td>{{(table.percent*100 | number:'1.2-2')}}%</td>
+        <td>{{(table.infinito*100)  | number:'1.2-2'}}%</td>
+
+      </tr>
+
+    </table>
+
+
+
+  </div>
+  <div class="dashboard">
+    <div class="chartcaja">
+      <div class="chart-container">
+        <canvas id="MyChart{{this.j}}" >{{ chart }}</canvas>
+        <app-bar-chart></app-bar-chart>
+        <div class="" style="padding-top: 0.5rem;padding-bottom: 0.4rem;display: inline-flex;column-gap: 1rem;margin-top:0.2rem" *ngIf="simulacionService.listaSimulaciones.length>0">
+          <div class="" *ngFor="let item of listaKeys()">
+            <button (click)="selectKey(item,j)" style="padding: 0.4rem 0.4rem"
+                    [ngStyle]="{background:exitKey(item) ? 'lightblue': 'gray'}">
+              {{item}}
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

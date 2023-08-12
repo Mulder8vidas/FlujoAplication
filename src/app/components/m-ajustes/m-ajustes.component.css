@@ -218,3 +218,12 @@ a{
 .aea{
   padding-bottom:  20px;
 }
+.btn{
+  width: 100%;
+  margin-top: .5em;
+  padding: .5em 2em;
+  border: none;
+  background: #030f25;
+  color: white;
+  cursor: pointer;
+}

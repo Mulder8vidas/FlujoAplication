@@ -36,6 +36,8 @@ import { FloatBtnComponent } from './components/float-btn/float-btn.component';
 import { SimuladorPerpetuoComponent } from './pages/simulador-perpetuo/simulador-perpetuo.component';
 import { CrearSimulacionComponent } from './pages/crear-simulacion/crear-simulacion.component';
 import { MAjustesComponent } from './components/m-ajustes/m-ajustes.component';
+import {SimulacionService} from "./service/simulacion.service";
+import { ChartComponent } from './components/chart/chart.component';
 
 
 
@@ -79,6 +81,7 @@ export const myRxStompConfig: InjectableRxStompConfig = {
     SimuladorPerpetuoComponent,
     CrearSimulacionComponent,
     MAjustesComponent,
+    ChartComponent,
 
 
 
@@ -101,7 +104,7 @@ export const myRxStompConfig: InjectableRxStompConfig = {
 
 
   ],
-  providers: [ApiService,MessageService,UtilService,RxStompService,DecimalPipe,
+  providers: [ApiService,MessageService,UtilService,RxStompService,DecimalPipe,SimulacionService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

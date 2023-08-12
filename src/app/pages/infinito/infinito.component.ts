@@ -42,8 +42,8 @@ export class InfinitoComponent implements OnInit{
     wmInpunt:new FormControl({value:'',disabled:true}),
     keinpunt:new FormControl({value:'',disabled:true}),
     kdm:new FormControl({value:'',disabled:true}),
-    timpuestos:new FormControl({value:'',disabled:true}),
     kum:new FormControl({ value: '', disabled: true }),
+    timpuestos:new FormControl({value:'',disabled:true}),
     xminput :new FormControl({value:'',disabled:true}),
     totalfinal:new FormControl({value:'',disabled:true}),
 

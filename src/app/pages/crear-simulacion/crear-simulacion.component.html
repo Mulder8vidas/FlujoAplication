@@ -7,6 +7,9 @@
       <div class="btn-header">
 
       </div>
+
+
+
     </div>
 
     <div class="line"></div>
@@ -14,7 +17,7 @@
       <div class="container-flujo">
 
           <div class="anual">
-            <form [formGroup]="FormCalculo" style="  zoom: 95%;">
+            <form [formGroup]="simulacionService.formGroup" style="  zoom: 95%;">
               <div class="calc-caja ">
 
                 <div class="anual-container">
@@ -50,18 +53,21 @@
                     <input class="form-control" formControlName="gInpunt" id="gInpunt" type="number">
                   </div>
                   <div class="inputcss">
+                    <label  style="font-size: 11px" for="gInpunt">T tasa impuesto </label>
+                    <input class="form-control" formControlName="timpuestos" id="timpuestos" type="number">
+                  </div>
+                  <div class="inputcss">
                     <label  style="font-size: 11px" for="ftotal">Flujo total </label>
                     <input class="form-control" formControlName="ftotal" id="ftotal" type="number">
                   </div>
                   <button class="btn" (click)="showModalDialog()" >Agregar M Ajustes</button>
-                  <p-dialog header="Flujo con M ajustes" [(visible)]="displayModal"  [modal]="true" [style]="{width: '30vw'}"
-                            [draggable]="false" [resizable]="false">
+                  <button class="btn" (click)="calcularFlujoTotal()" >Calcular Flujo Total</button>
+                  <button class="btn" (click)="simulacionService.cambiarVariable()" >Cambio de variables</button>
+                  <p-dialog header="Flujo con M ajustes" [(visible)]="displayModal"  [modal]="true" [dismissableMask]="true" [rtl]="true" [style]="{width: '30vw'}"
+                            [draggable]="false" [resizable]="false" (close)="closeData($event)">
                     <app-m-ajustes></app-m-ajustes>
 
-                    <ng-template pTemplate="footer">
-                      <button class="btn" (click)="displayModal=false">Guardar M Ajustes </button>
 
-                    </ng-template>
                   </p-dialog>
 
                 </div>
@@ -70,44 +76,24 @@
 
               </div>
             </form>
-
-
-          </div>
-        <div class="container-table">
-          <div class="table">
-            <p-table [value]="tabla">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th>M</th>
-                  <th>Ln (M)</th>
-                  <th>Vl</th>
-                  <th>Variacion</th>
-                  <th>%</th>
-                  <th>Infinito (∞)</th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-table>
-                <tr>
-                  <td>{{table.m}}</td>
-                  <td>{{table.ln}}</td>
-                  <td>{{table.vl}}</td>
-                  <td>{{table.variacion}}</td>
-                  <td>{{table.porcentaje}}</td>
-                  <td>{{table.infinito}}</td>
-
-                </tr>
-              </ng-template>
-            </p-table>
-
-          </div>
-          <div class="dashboard">
-            <div class="chartcaja">
-              <div class="chart-container">
-                <canvas id="MyChart">{{ chart }}</canvas>
-                <app-bar-chart></app-bar-chart>
+            <div class="anual-caja" >
+              <div class="" style="flex: 0 0 calc(33.333% - 10px);
+    box-sizing: border-box;
+    padding: 5px;" *ngFor="let item of simulacionService.listaSimulaciones" >
+                <app-m-ajustes *ngIf="item.majustes!='%'" [data]="item.grupodata"></app-m-ajustes>
               </div>
             </div>
+
+
           </div>
+
+
+
+        <div class="container-table" *ngFor="let itemsall of simulacionService.listMajustes;let j=index">
+          <div class="" style="width: 100%">
+            <!--<app-chart [j]="j"></app-chart>-->
+          </div>
+
         </div>
 
 
@@ -118,3 +104,4 @@
     </div>
   </div>
 </div>
+
