@@ -38,6 +38,8 @@ import { CrearSimulacionComponent } from './pages/crear-simulacion/crear-simulac
 import { MAjustesComponent } from './components/m-ajustes/m-ajustes.component';
 import {SimulacionService} from "./service/simulacion.service";
 import { ChartComponent } from './components/chart/chart.component';
+import { FlujoComponent } from './components/flujo/flujo.component';
+import {DynamicDialogModule} from "primeng/dynamicdialog";
 
 
 
@@ -82,6 +84,7 @@ export const myRxStompConfig: InjectableRxStompConfig = {
     CrearSimulacionComponent,
     MAjustesComponent,
     ChartComponent,
+    FlujoComponent,
 
 
 
@@ -100,7 +103,7 @@ export const myRxStompConfig: InjectableRxStompConfig = {
     ToastModule,
     CalendarModule,
     FormsModule,
-    SpeedDialModule
+    SpeedDialModule,DynamicDialogModule
 
 
   ],

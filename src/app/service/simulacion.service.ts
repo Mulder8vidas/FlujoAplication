@@ -1,22 +1,26 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BehaviorSubject} from "rxjs";
 
 
-export interface TablaCalculo{
-  majustes:any,
-  ln:any,
-  vl:number,
-  variacion:number,
-  percent:number,
-  infinito:number,
-  datamajustes:any,
-  wm:number,
-  ke:number,
-  kdm:number,
-  kum:number,
-  vo69:number,
-  grupodata:any
+export interface TablaCalculo {
+  majustes: any,
+  ln: any,
+  vl: number,
+  variacion: number,
+  percent: number,
+  infinito: number,
+  wm: number,
+  ke: number,
+  kdm: number,
+  kum: number,
+  vo69: number,
+  grupodata: any
+}
+
+export interface listaSimulacion {
+  flujodata: any,
+  listaAjustes: TablaCalculo[];
 }
 
 @Injectable({
@@ -24,20 +28,19 @@ export interface TablaCalculo{
 })
 export class SimulacionService {
 
-  _data:BehaviorSubject<any>=new BehaviorSubject<boolean>(false);
-  public data$=this._data.asObservable();
+  _data: BehaviorSubject<any> = new BehaviorSubject<boolean>(false);
+  public data$ = this._data.asObservable();
 
-  public listAllSimulaciones:any[]=[];
-  public countAllSimulaciones:number=1;
+  public listAllSimulaciones: listaSimulacion[] = [];
 
 
-  _ajusteagrado:BehaviorSubject<any>=new BehaviorSubject<number>(0);
-  public ajusteagrado$=this._ajusteagrado.asObservable();
+  _ajusteagrado: BehaviorSubject<any> = new BehaviorSubject<number>(0);
+  public ajusteagrado$ = this._ajusteagrado.asObservable();
 
-  public listMajustes:any[]=[];
+  public listMajustes: any[] = [];
   public listaSimulaciones: TablaCalculo[] = [];
 
-  public formGroup: FormGroup= new FormGroup({
+  public formGroup: FormGroup = new FormGroup({
     fcl: new FormControl('100000', Validators.required),
     ku: new FormControl('30', Validators.required),
     kd: new FormControl('15', Validators.required),
@@ -55,83 +58,129 @@ export class SimulacionService {
     this.formGroup.valueChanges.subscribe(value => {
 
 
-
-
-
-
     })
 
   }
 
-  calcular(){
-    let value=this.formGroup.getRawValue();
-    this.formGroup.controls['ftotal'].setValue(this.calcularFtotal((value.gInpunt/100),value.taños,value.fcl), {emitEvent: false})
-    this.listMajustes.push(value);
+  calcular() {
+    let value = this.formGroup.getRawValue();
+    this.formGroup.controls['ftotal'].setValue(this.calcularFtotal((value.gInpunt / 100), value.taños, value.fcl), {emitEvent: false})
+    this.formGroup.disable()
+
+    if(this.listAllSimulaciones.length==0){
+      this.listAllSimulaciones.push({
+        flujodata: this.formGroup.getRawValue(),
+        listaAjustes: this.listaSimulaciones
+      });
+    }
+
+
+
+  }
+  calcularActual(formGroup:any){
+    let value = formGroup.getRawValue();
+    formGroup.controls['ftotal'].setValue(this.calcularFtotal((value.gInpunt / 100), value.taños, value.fcl), {emitEvent: false})
   }
 
-  cambiarVariable(){
-    this.listMajustes.push(this.formGroup.getRawValue());
-    this._ajusteagrado.next(0);
+  cambiarVariable() {
+
+    if (this.listAllSimulaciones.length > 0) {
+
+      let nuevadata:listaSimulacion=JSON.parse(JSON.stringify(this.listAllSimulaciones[0]));
+
+      nuevadata.listaAjustes=nuevadata.listaAjustes.filter(a=>{
+        return a.majustes!="%"
+      })
+
+      this.listAllSimulaciones.push(nuevadata);
+
+      this._ajusteagrado.next(0);
+    }
+
+
   }
 
 
+  calcularSimulacionActual(nuevadata: any,  initvalue: listaSimulacion) {
 
 
 
-  calcularSimulacion(data:any,currentFormGroup:FormGroup){
 
-
-    /*"crecimiento_anual": Number(this.FormCalculo.getRawValue().gInpunt) / 100,*/
-    currentFormGroup.controls["tTotal"].setValue(currentFormGroup.getRawValue().majustes*this.formGroup.getRawValue().taños, {emitEvent: false});
-    currentFormGroup.controls["gmInpunt"].setValue(String(Math.pow((1 + (Number(this.formGroup.getRawValue().gInpunt) / 100)), (1 / currentFormGroup.getRawValue().majustes)) - 1));
-    currentFormGroup.controls["yminput"].setValue(String(parseFloat(<string>currentFormGroup.getRawValue().gmInpunt) / (Number(this.formGroup.getRawValue().gInpunt) / 100) * Math.pow((1 + parseFloat(<string>currentFormGroup.getRawValue().gmInpunt)), (data.majustes - 1))));
-    currentFormGroup.controls["ftotales"].setValue(String(this.formGroup.getRawValue().fcl * (parseFloat(<string>currentFormGroup.getRawValue().yminput)) * (1 + parseFloat(<string>currentFormGroup.getRawValue().gmInpunt)) * (Math.pow((Math.pow((1 + parseFloat(<string>currentFormGroup.getRawValue().gmInpunt)), data.majustes)), this.formGroup.getRawValue().taños) - 1) / parseFloat(<string>currentFormGroup.getRawValue().gmInpunt)));
-    currentFormGroup.controls["ku"].setValue(Math.log((Number(this.formGroup.getRawValue().ku) / 100)+1), {emitEvent: false});
-    currentFormGroup.controls["kd"].setValue(Math.log((Number(this.formGroup.getRawValue().kd) / 100)+1), {emitEvent: false});
-    currentFormGroup.controls["xt"].setValue(Math.log((Number(this.formGroup.getRawValue().xt) / 100)+1), {emitEvent: false});
-    currentFormGroup.controls["delta"].setValue(Math.log((Number(this.formGroup.getRawValue().gInpunt) / 100)+1), {emitEvent: false});
-    currentFormGroup.controls["timpuestos"].setValue(this.formGroup.getRawValue().timpuestos/100, {emitEvent: false});
-    currentFormGroup.controls["factor"].setValue(1-(Math.exp(-2*(this.calcularWACC(currentFormGroup.getRawValue())-Number(currentFormGroup.getRawValue().delta)))), {emitEvent: false});
-
-    let  wm=this.calcularWm(currentFormGroup);
-    let ke=this.calcularKem(currentFormGroup);
-    let kdm=this.calcularKdm(currentFormGroup);
-    let kum=this.calcularKum(currentFormGroup);
+    initvalue.flujodata = nuevadata;
+    let formGroup = initvalue.flujodata;
 
 
 
-   this.listaSimulaciones=this.listaSimulaciones.filter(a=>a.majustes!="%")
 
 
-    this.listaSimulaciones.push({
-      datamajustes:this.formGroup.getRawValue(),
-      majustes:data.majustes,
-      ln:Math.log(data.majustes),
-      vl:this.calcularVa69(currentFormGroup),
-      variacion:0,
-      percent:0,
-      infinito:0,
-      wm:wm,
-      ke:ke,
-      kdm:kdm,
-      kum:kum,
-      vo69:this.calcularVa69(currentFormGroup),
-      grupodata:currentFormGroup.getRawValue()
 
+
+    initvalue.listaAjustes.map(value => {
+
+
+      let data=value.grupodata
+
+      data["tTotal"] = (data.majustes * formGroup.taños);
+      data["gmInpunt"] = (String(Math.pow((1 + (Number(formGroup.gInpunt) / 100)), (1 / data.majustes)) - 1));
+      data["yminput"] = (String(parseFloat(<string>data.gmInpunt) / (Number(formGroup.gInpunt) / 100) * Math.pow((1 + parseFloat(<string>data.gmInpunt)), (data.majustes - 1))));
+      data["ftotales"] = (String(formGroup.fcl * (parseFloat(<string>data.yminput)) * (1 + parseFloat(<string>data.gmInpunt)) * (Math.pow((Math.pow((1 + parseFloat(<string>data.gmInpunt)), data.majustes)), formGroup.taños) - 1) / parseFloat(<string>data.gmInpunt)));
+      data["ku"] = (Math.log((Number(formGroup.ku) / 100) + 1));
+      data["kd"] = (Math.log((Number(formGroup.kd) / 100) + 1));
+      data["xt"] = (Math.log((Number(formGroup.xt) / 100) + 1));
+      data["delta"] = (Math.log((Number(formGroup.gInpunt) / 100) + 1));
+      data["timpuestos"] = (formGroup.timpuestos / 100);
+      data["factor"] = (1 - (Math.exp(-2 * (this.calcularWACC(data, formGroup) - Number(data.delta)))));
+
+      let wm = this.calcularWm(data, formGroup);
+      let ke = this.calcularKem(data, formGroup);
+      let kdm = this.calcularKdm(data, formGroup);
+      let kum = this.calcularKum(data, formGroup);
+
+      value.wm = wm;
+      value.ke = ke;
+      value.kdm = kdm;
+      value.kum = kum;
+      value.vl= this.calcularVa69(data, formGroup);
+      value.ln=Math.log(data.majustes);
+      value.vo69=this.calcularVa69(data, formGroup);
+      value.grupodata=data;
+
+
+
+   /*   initvalue.listaAjustes.push({
+        majustes: data.majustes,
+        ln: Math.log(data.majustes),
+        vl: this.calcularVa69(actuagrupo.getRawValue(), formGroup),
+        variacion: 0,
+        percent: 0,
+        infinito: 0,
+        wm: wm,
+        ke: ke,
+        kdm: kdm,
+        kum: kum,
+        vo69: this.calcularVa69(actuagrupo.getRawValue(), formGroup),
+        grupodata: actuagrupo.getRawValue()
+
+      })
+*/
+
+      return value;
     })
 
 
-    if(this.listaSimulaciones.length>1){
-
-      this.listaSimulaciones=this.listaSimulaciones.map((value, index) => {
-
-        if(index>0){
-
-          value.variacion=value.vl-this.listaSimulaciones[0].vl;
-          value.percent=(value.vl-this.listaSimulaciones[0].vl)/this.listaSimulaciones[0].vl;
 
 
 
+
+
+    if (initvalue.listaAjustes.length > 1) {
+
+      initvalue.listaAjustes = initvalue.listaAjustes.map((value, index) => {
+
+        if (index > 0) {
+
+          value.variacion = value.vl - initvalue.listaAjustes[0].vl;
+          value.percent = (value.vl - initvalue.listaAjustes[0].vl) / initvalue.listaAjustes[0].vl;
 
 
         }
@@ -140,87 +189,218 @@ export class SimulacionService {
       })
 
 
-
     }
 
-    this.listaSimulaciones.push({
-      datamajustes:currentFormGroup.getRawValue(),
-      majustes:"%",
-      ln:"",
-      vl:this.calcularVo(currentFormGroup),
-      variacion:0,
-      percent:0,
-      infinito:0,
-      wm:0,
-      ke:0,
-      kdm:0,
-      kum:0,
-      vo69:this.calcularVa69(currentFormGroup),
-      grupodata:currentFormGroup.getRawValue()
 
-    })
 
-    this.listaSimulaciones.forEach((value, index) => {
 
-      if(index>0 && index!=this.listaSimulaciones.length-1){
+    initvalue.listaAjustes=initvalue.listaAjustes.map((value, index) => {
 
-        if(index==this.listaSimulaciones.length-2){
-            value.infinito=value.percent;
-        }else{
-          value.infinito=this.listaSimulaciones[this.listaSimulaciones.length-2].percent
+
+
+        if (index == initvalue.listaAjustes.length - 2) {
+          value.infinito = value.percent;
+        } else {
+          value.infinito = initvalue.listaAjustes[initvalue.listaAjustes.length - 2].percent
         }
 
 
-      }
-      if(index==this.listaSimulaciones.length-1){
 
-          value.infinito=this.listaSimulaciones[this.listaSimulaciones.length-2].percent
-        value.variacion=value.vl-this.listaSimulaciones[0].vl;
-        value.percent=(value.vl-this.listaSimulaciones[0].vl)/this.listaSimulaciones[0].vl;
-      }
+      return value;
+
 
     })
+
+
+
+    this._data.next(false);
+    this._ajusteagrado.next(0);
+
+    console.log("nuevo calculo")
+    console.log(initvalue);
+
+    return initvalue
+
+
+  }
+
+
+  calcularSimulacion(data: any, actuagrupo: FormGroup) {
+
+
+    this.listAllSimulaciones.forEach((initvalue, indice) => {
+
+
+      if (indice == 0) {
+
+        let formGroup = initvalue.flujodata;
+
+        actuagrupo.controls["tTotal"].setValue(actuagrupo.getRawValue().majustes * formGroup.taños, {emitEvent: false});
+        actuagrupo.controls["gmInpunt"].setValue(String(Math.pow((1 + (Number(formGroup.gInpunt) / 100)), (1 / actuagrupo.getRawValue().majustes)) - 1));
+        actuagrupo.controls["yminput"].setValue(String(parseFloat(<string>actuagrupo.getRawValue().gmInpunt) / (Number(formGroup.gInpunt) / 100) * Math.pow((1 + parseFloat(<string>actuagrupo.getRawValue().gmInpunt)), (data.majustes - 1))));
+        actuagrupo.controls["ftotales"].setValue(String(formGroup.fcl * (parseFloat(<string>actuagrupo.getRawValue().yminput)) * (1 + parseFloat(<string>actuagrupo.getRawValue().gmInpunt)) * (Math.pow((Math.pow((1 + parseFloat(<string>actuagrupo.getRawValue().gmInpunt)), data.majustes)), formGroup.taños) - 1) / parseFloat(<string>actuagrupo.getRawValue().gmInpunt)));
+        actuagrupo.controls["ku"].setValue(Math.log((Number(formGroup.ku) / 100) + 1), {emitEvent: false});
+        actuagrupo.controls["kd"].setValue(Math.log((Number(formGroup.kd) / 100) + 1), {emitEvent: false});
+        actuagrupo.controls["xt"].setValue(Math.log((Number(formGroup.xt) / 100) + 1), {emitEvent: false});
+        actuagrupo.controls["delta"].setValue(Math.log((Number(formGroup.gInpunt) / 100) + 1), {emitEvent: false});
+        actuagrupo.controls["timpuestos"].setValue(formGroup.timpuestos / 100, {emitEvent: false});
+        actuagrupo.controls["factor"].setValue(1 - (Math.exp(-2 * (this.calcularWACC(actuagrupo.getRawValue(), formGroup) - Number(actuagrupo.getRawValue().delta)))), {emitEvent: false});
+
+        let wm = this.calcularWm(actuagrupo.getRawValue(), formGroup);
+        let ke = this.calcularKem(actuagrupo.getRawValue(), formGroup);
+        let kdm = this.calcularKdm(actuagrupo.getRawValue(), formGroup);
+        let kum = this.calcularKum(actuagrupo.getRawValue(), formGroup);
+        initvalue.listaAjustes = initvalue.listaAjustes.filter(a => a.majustes != "%")
+
+
+        initvalue.listaAjustes.push({
+          majustes: data.majustes,
+          ln: Math.log(data.majustes),
+          vl: this.calcularVa69(actuagrupo.getRawValue(), formGroup),
+          variacion: 0,
+          percent: 0,
+          infinito: 0,
+          wm: wm,
+          ke: ke,
+          kdm: kdm,
+          kum: kum,
+          vo69: this.calcularVa69(actuagrupo.getRawValue(), formGroup),
+          grupodata: actuagrupo.getRawValue()
+
+        })
+
+
+        if (initvalue.listaAjustes.length > 1) {
+
+          initvalue.listaAjustes = initvalue.listaAjustes.map((value, index) => {
+
+            if (index > 0) {
+
+              value.variacion = value.vl - initvalue.listaAjustes[0].vl;
+              value.percent = (value.vl - initvalue.listaAjustes[0].vl) / initvalue.listaAjustes[0].vl;
+
+
+            }
+            return value;
+
+          })
+
+
+        }
+
+        if (indice == 0) {
+          initvalue.listaAjustes.push({
+            majustes: "%",
+            ln: "",
+            vl: this.calcularVo(actuagrupo, formGroup),
+            variacion: 0,
+            percent: 0,
+            infinito: 0,
+            wm: 0,
+            ke: 0,
+            kdm: 0,
+            kum: 0,
+            vo69: this.calcularVa69(actuagrupo, formGroup),
+            grupodata: actuagrupo.getRawValue()
+
+          })
+        }
+
+
+        initvalue.listaAjustes.forEach((value, index) => {
+
+          if (index > 0 && index != initvalue.listaAjustes.length - 1) {
+
+            if (index == initvalue.listaAjustes.length - 2) {
+              value.infinito = value.percent;
+            } else {
+              value.infinito = initvalue.listaAjustes[initvalue.listaAjustes.length - 2].percent
+            }
+
+
+          }
+          if (index == initvalue.listaAjustes.length - 1 && indice == 0) {
+
+            value.infinito = initvalue.listaAjustes[initvalue.listaAjustes.length - 2].percent
+            value.variacion = value.vl - initvalue.listaAjustes[0].vl;
+            value.percent = (value.vl - initvalue.listaAjustes[0].vl) / initvalue.listaAjustes[0].vl;
+          }
+
+        })
+
+      }else{
+
+        initvalue.listaAjustes.push({
+          majustes: data.majustes,
+          ln: Math.log(data.majustes),
+          vl: 0,
+          variacion: 0,
+          percent: 0,
+          infinito: 0,
+          wm: 0,
+          ke: 0,
+          kdm: 0,
+          kum: 0,
+          vo69: 0,
+          grupodata: actuagrupo.getRawValue()
+
+        })
+
+        initvalue=this.calcularSimulacionActual(initvalue.flujodata,initvalue)
+
+
+      }
+
+
+    })
+
+
+
+
 
     this._data.next(false);
     this._ajusteagrado.next(0);
 
 
-
-
-
   }
 
-  private calcularFtotal(gInpunt:any, taños:any,fcl:any) {
-
-    return fcl*(1+gInpunt)*(Math.pow((1+gInpunt),(taños))-1)/gInpunt
-  }
-  calcularKdm(currentFormGroup:any){
-    return Math.pow((1+this.formGroup.getRawValue().kd/100),(1/currentFormGroup.getRawValue().majustes))-1;
-  }
-  calcularKum(currentFormGroup:any){
-    return Math.pow((1+this.formGroup.getRawValue().ku/100),(1/currentFormGroup.getRawValue().majustes))-1;
-  }
-  calcularKem(currentFormGroup:any){
-    return this.calcularKum(currentFormGroup)+((parseFloat(this.formGroup.getRawValue().Yinput)))*(this.calcularKum(currentFormGroup)-this.calcularKdm(currentFormGroup))-(this.calcularKum(currentFormGroup)-this.calcularXm(currentFormGroup))*(this.calcularKdm(currentFormGroup)*(this.formGroup.getRawValue().timpuestos/100)*(this.formGroup.getRawValue().Yinput))/(this.calcularXm(currentFormGroup)-
-      parseFloat(<string>currentFormGroup.controls["gmInpunt"].value))
-  }
-  calcularXm(currentFormGroup:any){
-    return (Math.pow((1+this.formGroup.getRawValue().xt/100),(1/currentFormGroup.getRawValue().majustes)))-1;
-  }
-  calcularWm(currentFormGroup:any){
-    return (1/(1+(parseFloat(this.formGroup.getRawValue().Yinput))))*this.calcularKem(currentFormGroup)+(parseFloat(this.formGroup.getRawValue().Yinput))/(1+parseFloat(this.formGroup.getRawValue().Yinput))*this.calcularKdm(currentFormGroup)*(1-(this.formGroup.getRawValue().timpuestos/100));
-  }
-  calcularWACC(data:any){
-    return data.ku*(1-this.formGroup.getRawValue().Yinput/(1+parseFloat(this.formGroup.getRawValue().Yinput))*data.kd*data.timpuestos/(data.xt-data.delta)*(1-data.delta/data.ku));
+  calcularKdm(actualgrupo: any, formGroup: any) {
+    return Math.pow((1 + formGroup.kd / 100), (1 / actualgrupo.majustes)) - 1;
   }
 
-  calcularVa69(currentFormGroup:any){
-    return (1+parseFloat(<string>currentFormGroup.controls["gmInpunt"].value))*parseFloat(<string>currentFormGroup.controls["yminput"].value)*this.formGroup.getRawValue().fcl/
-      ((this.calcularWm(currentFormGroup))-parseFloat(<string>currentFormGroup.controls["gmInpunt"].value))
+  calcularKum(actualgrupo: any, formGroup: any) {
+    return Math.pow((1 + formGroup.ku / 100), (1 / actualgrupo.majustes)) - 1;
   }
-  calcularVo(data:any){
-    let datas= data.getRawValue().delta*this.formGroup.getRawValue().fcl*(1+Number(this.formGroup.getRawValue().gInpunt/100))/((this.formGroup.getRawValue().gInpunt/100)*(this.calcularWACC(data.getRawValue())-data.getRawValue().delta));
-    console.log(datas)
+
+  calcularKem(actualgrupo: any, formGroup: any) {
+    return this.calcularKum(actualgrupo, formGroup) + ((parseFloat(formGroup.Yinput))) * (this.calcularKum(actualgrupo, formGroup) - this.calcularKdm(actualgrupo, formGroup)) - (this.calcularKum(actualgrupo, formGroup) - this.calcularXm(actualgrupo, formGroup)) * (this.calcularKdm(actualgrupo, formGroup) * (formGroup.timpuestos / 100) * (formGroup.Yinput)) / (this.calcularXm(actualgrupo, formGroup) -
+      parseFloat(<string>actualgrupo.gmInpunt))
+  }
+
+  calcularXm(actualgrupo: any, formGroup: any) {
+    return (Math.pow((1 + formGroup.xt / 100), (1 / actualgrupo.majustes))) - 1;
+  }
+
+  calcularWm(actualgrupo: any, formGroup: any) {
+    return (1 / (1 + (parseFloat(formGroup.Yinput)))) * this.calcularKem(actualgrupo, formGroup) + (parseFloat(formGroup.Yinput)) / (1 + parseFloat(formGroup.Yinput)) * this.calcularKdm(actualgrupo, formGroup) * (1 - (formGroup.timpuestos / 100));
+  }
+
+  calcularWACC(data: any, formGroup: any) {
+    return data.ku * (1 - formGroup.Yinput / (1 + parseFloat(formGroup.Yinput)) * data.kd * data.timpuestos / (data.xt - data.delta) * (1 - data.delta / data.ku));
+  }
+
+  calcularVa69(actualgrupo: any, formGroup: any) {
+    return (1 + parseFloat(<string>actualgrupo.gmInpunt)) * parseFloat(<string>actualgrupo.yminput) * formGroup.fcl /
+      ((this.calcularWm(actualgrupo, formGroup)) - parseFloat(<string>actualgrupo.gmInpunt))
+  }
+
+  calcularVo(data: any, formGroup: any) {
+    let datas = data.delta * formGroup.fcl * (1 + Number(formGroup.gInpunt / 100)) / ((formGroup.gInpunt / 100) * (this.calcularWACC(data, formGroup) - data.delta));
     return datas;
+  }
+
+  private calcularFtotal(gInpunt: any, taños: any, fcl: any) {
+
+    return fcl * (1 + gInpunt) * (Math.pow((1 + gInpunt), (taños)) - 1) / gInpunt
   }
 }

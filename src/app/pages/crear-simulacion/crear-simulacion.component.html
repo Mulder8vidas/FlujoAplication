@@ -76,10 +76,10 @@
 
               </div>
             </form>
-            <div class="anual-caja" >
+            <div class="anual-caja"  *ngIf="simulacionService.listAllSimulaciones.length>0">
               <div class="" style="flex: 0 0 calc(33.333% - 10px);
     box-sizing: border-box;
-    padding: 5px;" *ngFor="let item of simulacionService.listaSimulaciones" >
+    padding: 5px;" *ngFor="let item of simulacionService.listAllSimulaciones[0].listaAjustes" >
                 <app-m-ajustes *ngIf="item.majustes!='%'" [data]="item.grupodata"></app-m-ajustes>
               </div>
             </div>
@@ -89,9 +89,10 @@
 
 
 
-        <div class="container-table" *ngFor="let itemsall of simulacionService.listMajustes;let j=index">
+        <div class="container-table" *ngFor="let itemsall of simulacionService.listAllSimulaciones;let j=index">
           <div class="" style="width: 100%">
-            <app-chart [j]="j"></app-chart>
+
+            <app-chart  [j]="j"></app-chart>
           </div>
 
         </div>

@@ -52,7 +52,7 @@ export class HomeAppComponent implements AfterViewInit{
   }
 
   dashboard() {
-    window.open('/dashboard', '_blank');
+    window.open('/lander/dashboard', '_blank');
   }
 
 
@@ -79,7 +79,7 @@ export class HomeAppComponent implements AfterViewInit{
     localStorage.setItem("dataload",JSON.stringify(this.FormCalculo.getRawValue()))
 
 
-    window.open('/caja-finito', '_blank');
+    window.open('/lander/caja-finito', '_blank');
 
   }
 

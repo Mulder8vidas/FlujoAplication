@@ -75,7 +75,7 @@ export class CajaInfinitoComponent implements OnInit{
   }
 
   dashboard() {
-    window.open('/dashboard-infinito', '_blank');
+    window.open('/lander/dashboard-infinito', '_blank');
   }
   calcularKe(data:any){
     return data.kua+data.yde*(data.kua-data.kda)-(data.kua-data.xta)*data.kda*data.tasaimpuesto*data.yde/(data.xta-data.delta)

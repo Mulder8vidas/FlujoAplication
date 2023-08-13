@@ -1,0 +1,53 @@
+<form [formGroup]="formGroup" style="  zoom: 95%;">
+  <div class="calc-caja ">
+
+    {{id | json}}
+    <div class="anual-container">
+      <div class="titlee">Flujo Anual</div>
+      <div class="inputcss">
+        <label for="fcl">FCL: </label>
+        <input class="form-control" formControlName="fcl" id="fcl" type="number">
+      </div>
+      <div class="titlee " >   Años: </div>
+      <div class="inputcss">
+        <label for="ku">Ku: </label>
+        <input class="form-control" formControlName="ku" id="ku" type="number">
+      </div>
+      <div class="inputcss">
+        <label for="kd">Kd: </label>
+        <input class="form-control" formControlName="kd" id="kd" type="number">
+      </div>
+      <div class="inputcss">
+        <label for="xt">Xt: </label>
+        <input class="form-control" formControlName="xt" id="xt" type="number">
+      </div>
+      <div class="inputcss">
+        <label for="Yinput">Y (D/E) </label>
+        <input class="form-control" formControlName="Yinput" id="Yinput" type="number">
+      </div>
+      <div class="inputcss">
+        <label for="t-años">T años </label>
+        <input class="form-control" formControlName="taños" id="t-años" type="number"
+               style="background: rgb(9,132,227,.8)">
+      </div>
+      <div class="inputcss">
+        <label  style="font-size: 11px" for="gInpunt">g (Crecimiento anual) </label>
+        <input class="form-control" formControlName="gInpunt" id="gInpunt" type="number">
+      </div>
+      <div class="inputcss">
+        <label  style="font-size: 11px" for="gInpunt">T tasa impuesto </label>
+        <input class="form-control" formControlName="timpuestos" id="timpuestos" type="number">
+      </div>
+      <div class="inputcss">
+        <label  style="font-size: 11px" for="ftotal">Flujo total </label>
+        <input class="form-control" formControlName="ftotal" id="ftotal" type="number">
+      </div>
+      <button class="btn" (click)="guardarDatos()" >Guardar variables</button>
+
+
+    </div>
+
+
+
+  </div>
+</form>

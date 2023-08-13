@@ -68,7 +68,7 @@ export class InfinitoComponent implements OnInit{
   }
 
   dashboard() {
-    window.open('/dashboard-infinito', '_blank');
+    window.open('/lander/dashboard-infinito', '_blank');
   }
 
 
