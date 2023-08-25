@@ -1,0 +1,286 @@
+.simulador-component{
+  font-family: "Segoe UI", "Tahoma","Verdana",serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: rgb(128, 130, 127,.5);
+  justify-content: center;
+  align-items: center;
+
+}
+.home-header{
+  width: 100%;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+.btn-header{
+  display: flex;
+  gap: 2em;
+
+}
+.btns{
+  background:#002060;
+  padding: .7em 1.5em;
+  color: #f7f7f7;
+  border: #0078d4 solid 2px;
+  border-radius: 7px;
+  transition-duration: .2s;
+  cursor:pointer;
+  font-size:16px
+}
+.btns:hover{
+  color: #06193f;
+  background: #f7f7f7;
+}
+.home-form{
+  background: #f7f7f7;
+  width: 99%;
+  height: 98%;
+  padding-top: 0.4em;
+  padding-right: 0.5em;
+  padding-left: 0.6em;
+
+
+}
+.home-form h1{
+  font-family: "Segoe UI", "Tahoma","Verdana",serif;
+  font-weight: 400;
+  font-size: 35px;
+  color:#002060
+}
+.line {
+  width: 100%;
+  height: 2px;
+  background-color: #002060;
+  margin-top: .2em;
+
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  text-align: center;
+
+}
+input {
+  padding: .5em 1em;
+  outline: none;
+  width: 60%;
+  text-align: center;
+}
+label{
+
+  width: 40%;
+  text-align: right;
+}
+.inputcss{
+  display: flex;
+  gap: 1em;
+}
+
+
+
+.calcular-btn:hover{
+  color: #002060;
+  background: #f7f7f7;
+}
+.title-año{
+  margin-top: 1em;
+}
+.tran{
+  color: transparent;
+}
+.inputcss{
+  margin-bottom: .5em;
+}
+.f-total{
+  margin-top: 2em;
+}
+.totales  {
+  margin-top: 1em;
+  display: flex;
+}
+
+
+#btn-mas{
+  display: none;
+}
+.contenedor-btn{
+  position: fixed;
+  bottom: 50px;
+  right: 80px;
+}
+.redes a,.icon-mas2{
+  display: block;
+  text-decoration: none;
+  background: #cc2b2b;
+  color: #fff;
+  height: 55px;
+  width: 55px;
+  line-height: 55px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0,0,0,.4);
+  transition: all 500ms ease;
+  text-align: center;
+}
+.redes a:hover{
+  background: #fff;
+  color: #cc2b2b;
+}
+.redes a{
+  margin-bottom: -15px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#btn-mas:checked~.redes a{
+  margin-bottom: 10px;
+  opacity: 1;
+  visibility: visible;
+}
+a{
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+.icon-mas2{
+  text-align: center;
+
+}
+.btn-mas{
+  text-align: center;
+  display: flex;
+
+
+}
+.icon-mas2 {
+  cursor: pointer;
+  text-decoration: none;
+  background: #002060;
+}
+.excel {
+  background: #175935 !important;
+}
+
+
+.aea{
+  padding-bottom:  20px;
+}
+.container-table{
+  height: 45%;
+  width: 100%;
+  margin-top: 3%;
+
+
+
+  padding-bottom: 1em;
+
+}
+.container-flujo{
+  height: 50%;
+  padding: 0 1em;
+  margin-top: 1%;
+
+
+}
+
+.container-data{
+  height: 95%;
+  overflow-y:scroll;
+  overflow-x:hidden;
+
+}
+.anual{
+  width: 94vw;
+
+  display:grid;
+  grid-template-columns: 0.25fr 1fr;
+
+
+
+
+
+}
+.anual-caja{
+  display: flex;
+  overflow-x: auto;
+  max-width: calc(100% - 20px);
+
+
+}
+.titlee{
+  text-align: center;
+  margin-bottom: 5px;
+  background: #030f25;
+  color: white;
+}
+.btn{
+  width: 100%;
+  margin-top: .5em;
+  padding: .5em 2em;
+  border: none;
+  background: #030f25;
+  color: white;
+  cursor: pointer;
+}
+.container-table{
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+  gap: 1em;
+}
+.table{
+  width: 40%;
+  max-height: 500px; /* Altura máxima para activar el scroll vertical */
+  overflow-y: auto;
+
+
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.dashboard{
+  width: 60%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.p-datatable-table{
+
+}
+::ng-deep .p-datatable-table {
+  height: 100%;
+}
+:host ::ng-deep  .p-datatable .p-datatable-thead > tr > th{
+  height: 20px !important;
+}
+:host ::ng-deep  .p-datatable .p-datatable-thead > tr{
+  height: 20px !important;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr {
+  height: 12px;
+}
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  height: 12px;
+}
+.excel-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  font-size: 10px; /* Tamaño de fuente más pequeño */
+}
+
+.excel-table th,
+.excel-table td {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+}
+
+.excel-table th {
+  background-color: #f2f2f2;
+}
+
+.excel-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+

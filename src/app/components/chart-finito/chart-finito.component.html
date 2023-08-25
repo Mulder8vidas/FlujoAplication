@@ -15,7 +15,7 @@
         <th>Vl</th>
         <th>Variacion</th>
         <th>%</th>
-        <th *ngIf="j==0">Infinito (∞)</th>
+
       </tr>
 
       <tr *ngFor="let table of datatable" >
@@ -24,7 +24,7 @@
         <td>{{table.vl | number:'1.2-2'}}</td>
         <td>{{table.variacion | number:'1.2-2'}}</td>
         <td>{{(table.percent*100 | number:'1.2-2')}}%</td>
-        <td *ngIf="j==0">{{(table.infinito*100)  | number:'1.2-2'}}%</td>
+
 
       </tr>
 

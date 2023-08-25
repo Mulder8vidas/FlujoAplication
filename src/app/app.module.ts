@@ -40,6 +40,12 @@ import {SimulacionService} from "./service/simulacion.service";
 import { ChartComponent } from './components/chart/chart.component';
 import { FlujoComponent } from './components/flujo/flujo.component';
 import {DynamicDialogModule} from "primeng/dynamicdialog";
+import { ConsolidadoComponent } from './components/consolidado/consolidado.component';
+import { CrearSimulacionFinitoComponent } from './pages/crear-simulacion-finito/crear-simulacion-finito.component';
+import { MAjustesFinitoComponent } from './components/m-ajustes-finito/m-ajustes-finito.component';
+import { ChartFinitoComponent } from './components/chart-finito/chart-finito.component';
+import { FlujoFinitoComponent } from './components/flujo-finito/flujo-finito.component';
+import { ConsolidadoFinitoComponent } from './components/consolidado-finito/consolidado-finito.component';
 
 
 
@@ -85,6 +91,12 @@ export const myRxStompConfig: InjectableRxStompConfig = {
     MAjustesComponent,
     ChartComponent,
     FlujoComponent,
+    ConsolidadoComponent,
+    CrearSimulacionFinitoComponent,
+    MAjustesFinitoComponent,
+    ChartFinitoComponent,
+    FlujoFinitoComponent,
+    ConsolidadoFinitoComponent,
 
 
 

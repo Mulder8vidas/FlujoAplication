@@ -52,11 +52,19 @@ export class ApiService {
 
   }
 
-  public getCajaTabla(){
+  public getCajaTabla():Observable<any>{
 
 
     // @ts-ignore
     return this.http.post(ApiUrl()+"/caja",JSON.parse(localStorage.getItem("data")));
+
+  }
+
+  public getCajaTablaFlujo(payload:any):Observable<any>{
+
+
+    // @ts-ignore
+    return this.http.post(ApiUrl()+"/caja",payload);
 
   }
 

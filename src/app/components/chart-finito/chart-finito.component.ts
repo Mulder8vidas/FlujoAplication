@@ -1,18 +1,16 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
 import {SimulacionService} from "../../service/simulacion.service";
-import {Chart, registerables} from "chart.js";
 import {DialogService} from "primeng/dynamicdialog";
+import {Chart} from "chart.js";
 import {FlujoComponent} from "../flujo/flujo.component";
-Chart.register(...registerables);
+import {FlujoFinitoComponent} from "../flujo-finito/flujo-finito.component";
+
 @Component({
-  selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css'],
-  providers:[DialogService]
+  selector: 'app-chart-finito',
+  templateUrl: './chart-finito.component.html',
+  styleUrls: ['./chart-finito.component.css']
 })
-export class ChartComponent implements AfterViewInit{
-
-
+export class ChartFinitoComponent implements AfterViewInit{
 
   datatable:any[]=[];
 
@@ -36,7 +34,7 @@ export class ChartComponent implements AfterViewInit{
 
   }
   listaKeys(){
-    return Object.keys(this.datatable[0]).filter(value => {
+    return Object.keys(this.datatable[0]).filter(value=>value!="infinito").filter(value => {
       return value=="majustes" || value=="ln" || value=="vl" || value=="variacion" || value=="percent" || value=="infinito";
     })
   }
@@ -160,7 +158,7 @@ export class ChartComponent implements AfterViewInit{
 
   editarVaribles() {
 
-    let ref = this.dialogService.open(FlujoComponent, {
+    let ref = this.dialogService.open(FlujoFinitoComponent, {
       header: 'Editar Variables',
       width: '70%',
       contentStyle: { overflow: 'auto' },
@@ -183,19 +181,19 @@ export class ChartComponent implements AfterViewInit{
       case "majustes":
         return "M";
 
-       case "ln":
+      case "ln":
         return "Ln (M)";
 
-        case "vl":
+      case "vl":
         return "Vl";
 
-        case "variacion":
+      case "variacion":
         return "Variación";
 
-        case "percent":
+      case "percent":
         return "%";
 
-        case "infinito":
+      case "infinito":
         return "Infinito";
 
     }

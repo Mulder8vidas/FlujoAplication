@@ -1,0 +1,109 @@
+<div class="simulador-component">
+  <div class="home-form ">
+    <div class="home-header" style="  zoom: 75%;">
+
+      <h1 class="title">Simulacion: </h1>
+
+      <div class="btn-header">
+
+      </div>
+
+
+
+    </div>
+
+    <div class="line"></div>
+    <div class="container-data">
+      <div class="container-flujo">
+
+        <div class="anual">
+          <form [formGroup]="simulacionService.formGroup" style="  zoom: 95%;">
+            <div class="calc-caja ">
+
+              <div class="anual-container">
+                <div class="titlee">Flujo Anual</div>
+                <div class="inputcss">
+                  <label for="fcl">FCL: </label>
+                  <input class="form-control" formControlName="fcl" id="fcl" type="number">
+                </div>
+                <div class="titlee " >   Años: </div>
+                <div class="inputcss">
+                  <label for="ku">Ku: </label>
+                  <input class="form-control" formControlName="ku" id="ku" type="number">
+                </div>
+                <div class="inputcss">
+                  <label for="kd">Kd: </label>
+                  <input class="form-control" formControlName="kd" id="kd" type="number">
+                </div>
+                <div class="inputcss">
+                  <label for="xt">Xt: </label>
+                  <input class="form-control" formControlName="xt" id="xt" type="number">
+                </div>
+                <div class="inputcss">
+                  <label for="Yinput">Y (D/E) </label>
+                  <input class="form-control" formControlName="Yinput" id="Yinput" type="number">
+                </div>
+                <div class="inputcss">
+                  <label for="t-años">T años </label>
+                  <input class="form-control" formControlName="taños" id="t-años" type="number"
+                         style="background: rgb(9,132,227,.8)">
+                </div>
+                <div class="inputcss">
+                  <label  style="font-size: 11px" for="gInpunt">g (Crecimiento anual) </label>
+                  <input class="form-control" formControlName="gInpunt" id="gInpunt" type="number">
+                </div>
+                <div class="inputcss">
+                  <label  style="font-size: 11px" for="gInpunt">T tasa impuesto </label>
+                  <input class="form-control" formControlName="timpuestos" id="timpuestos" type="number">
+                </div>
+                <!--<div class="inputcss">
+                  <label  style="font-size: 11px" for="ftotal">Flujo total </label>
+                  <input class="form-control" formControlName="ftotal" id="ftotal" type="number">
+                </div>-->
+                <button class="btn" (click)="showModalDialog()" >Agregar M Ajustes</button>
+                <button class="btn" (click)="simulacionService.cambiarVariable()" >Cambio de variables</button>
+                <button class="btn" (click)="mostrarConsolidado()" >Consolidado</button>
+                <p-dialog header="Flujo con M ajustes" [(visible)]="displayModal"  [modal]="true" [dismissableMask]="true" [rtl]="true" [style]="{width: '30vw'}"
+                          [draggable]="false" [resizable]="false" (close)="closeData($event)">
+                  <app-m-ajustes-finito></app-m-ajustes-finito>
+
+
+                </p-dialog>
+
+              </div>
+
+
+
+            </div>
+          </form>
+          <div class="anual-caja"  *ngIf="simulacionService.listAllSimulaciones.length>0">
+            <div class="" style="flex: 0 0 calc(33.333% - 10px);
+    box-sizing: border-box;
+    padding: 5px;" *ngFor="let item of simulacionService.listAllSimulaciones[0].listaAjustes" >
+              <app-m-ajustes-finito *ngIf="item.majustes!='%'" [data]="item.grupodata"></app-m-ajustes-finito>
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+
+        <div class="container-table" *ngFor="let itemsall of simulacionService.listAllSimulaciones;let j=index">
+          <div class="" style="width: 100%">
+
+            <app-chart-finito  [j]="j"></app-chart-finito>
+          </div>
+
+        </div>
+
+
+        <div class="contenedor-btn">
+          <app-float-btn></app-float-btn>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

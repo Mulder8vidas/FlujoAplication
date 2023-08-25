@@ -1,19 +1,17 @@
 import {AfterViewInit, Component} from '@angular/core';
-import {Chart, registerables} from "chart.js";
 import {SimulacionService} from "../../service/simulacion.service";
-import {FlujoComponent} from "../../components/flujo/flujo.component";
 import {DialogService} from "primeng/dynamicdialog";
 import {ConsolidadoComponent} from "../../components/consolidado/consolidado.component";
-
+import {Chart, registerables} from "chart.js";
+import {ConsolidadoFinitoComponent} from "../../components/consolidado-finito/consolidado-finito.component";
 Chart.register(...registerables);
-
 @Component({
-  selector: 'app-crear-simulacion',
-  templateUrl: './crear-simulacion.component.html',
-  styleUrls: ['./crear-simulacion.component.css'],
+  selector: 'app-crear-simulacion-finito',
+  templateUrl: './crear-simulacion-finito.component.html',
+  styleUrls: ['./crear-simulacion-finito.component.css'],
   providers:[DialogService]
 })
-export class CrearSimulacionComponent implements AfterViewInit {
+export class CrearSimulacionFinitoComponent implements AfterViewInit{
 
   displayModal: boolean;
   data = []
@@ -46,21 +44,21 @@ export class CrearSimulacionComponent implements AfterViewInit {
   mostrarConsolidado() {
 
 
-        let ref = this.dialogService.open(ConsolidadoComponent, {
-          header: 'Consolidado',
-          width: '100%',
-          height:'100%',
+    let ref = this.dialogService.open(ConsolidadoFinitoComponent, {
+      header: 'Consolidado',
+      width: '100%',
+      height:'100%',
 
-          contentStyle: { overflow: 'auto' },
-          baseZIndex: 10000,
-          maximizable: true,
-          rtl:true,
-          dismissableMask: true,
-          data:{
-            id:"adrian"
-          },
-          modal:true,
-          closeOnEscape:true,
-        });
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      rtl:true,
+      dismissableMask: true,
+      data:{
+        id:"adrian"
+      },
+      modal:true,
+      closeOnEscape:true,
+    });
   }
 }

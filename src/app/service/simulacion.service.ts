@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, forkJoin} from "rxjs";
+import {ApiService} from "./apiservice";
 
 
 export interface TablaCalculo {
@@ -20,7 +21,8 @@ export interface TablaCalculo {
 
 export interface listaSimulacion {
   flujodata: any,
-  listaAjustes: TablaCalculo[];
+  listaAjustes: any[];
+  nombreSimulacion:string;
 }
 
 @Injectable({
@@ -53,7 +55,7 @@ export class SimulacionService {
 
   })
 
-  constructor() {
+  constructor(private cajaService:ApiService) {
 
     this.formGroup.valueChanges.subscribe(value => {
 
@@ -70,13 +72,28 @@ export class SimulacionService {
     if(this.listAllSimulaciones.length==0){
       this.listAllSimulaciones.push({
         flujodata: this.formGroup.getRawValue(),
-        listaAjustes: this.listaSimulaciones
+        listaAjustes: this.listaSimulaciones,
+        nombreSimulacion:"Inicial"
       });
     }
 
 
-
   }
+  calcularFinito(){
+    let value = this.formGroup.getRawValue();
+    /*this.formGroup.controls['ftotal'].setValue(this.calcularFtotal((value.gInpunt / 100), value.taños, value.fcl), {emitEvent: false})*/
+    this.formGroup.disable()
+    if(this.listAllSimulaciones.length==0){
+      this.listAllSimulaciones.push({
+        flujodata: this.formGroup.getRawValue(),
+        listaAjustes: this.listaSimulaciones,
+        nombreSimulacion:"Inicial"
+      });
+    }
+  }
+
+
+
   calcularActual(formGroup:any){
     let value = formGroup.getRawValue();
     formGroup.controls['ftotal'].setValue(this.calcularFtotal((value.gInpunt / 100), value.taños, value.fcl), {emitEvent: false})
@@ -91,6 +108,7 @@ export class SimulacionService {
       nuevadata.listaAjustes=nuevadata.listaAjustes.filter(a=>{
         return a.majustes!="%"
       })
+     nuevadata.nombreSimulacion="Simulacion "+(this.listAllSimulaciones.length);
 
       this.listAllSimulaciones.push(nuevadata);
 
@@ -108,13 +126,6 @@ export class SimulacionService {
 
     initvalue.flujodata = nuevadata;
     let formGroup = initvalue.flujodata;
-
-
-
-
-
-
-
     initvalue.listaAjustes.map(value => {
 
 
@@ -147,24 +158,154 @@ export class SimulacionService {
 
 
 
-   /*   initvalue.listaAjustes.push({
-        majustes: data.majustes,
-        ln: Math.log(data.majustes),
-        vl: this.calcularVa69(actuagrupo.getRawValue(), formGroup),
-        variacion: 0,
-        percent: 0,
-        infinito: 0,
-        wm: wm,
-        ke: ke,
-        kdm: kdm,
-        kum: kum,
-        vo69: this.calcularVa69(actuagrupo.getRawValue(), formGroup),
-        grupodata: actuagrupo.getRawValue()
+      return value;
+    })
+
+
+
+
+
+
+
+    if (initvalue.listaAjustes.length > 1) {
+
+      initvalue.listaAjustes = initvalue.listaAjustes.map((value, index) => {
+
+        if (index > 0) {
+
+          value.variacion = value.vl - initvalue.listaAjustes[0].vl;
+          value.percent = (value.vl - initvalue.listaAjustes[0].vl) / initvalue.listaAjustes[0].vl;
+
+
+        }
+        return value;
 
       })
-*/
+
+
+    }
+
+
+    initvalue.listaAjustes=initvalue.listaAjustes.map((value, index) => {
+
+
+
+        if (index == initvalue.listaAjustes.length - 2) {
+          value.infinito = value.percent;
+        } else {
+          if(initvalue.listaAjustes.length>2){
+            value.infinito = initvalue.listaAjustes[initvalue.listaAjustes.length - 2].percent
+          }
+          value.infinito = 0;
+
+        }
+
+
 
       return value;
+
+
+    })
+
+
+
+    this._data.next(false);
+    this._ajusteagrado.next(0);
+
+
+    return initvalue
+
+
+  }
+
+  calcularSimulacionActualFinito(nuevadata: any,  initvalue: listaSimulacion,indexid:any) {
+
+
+
+
+    initvalue.flujodata = nuevadata;
+    let formGroup = initvalue.flujodata;
+    const observables =initvalue.listaAjustes.map((value,index) => {
+
+      let data=value.grupodata
+      let payload={
+        "flujo_anual": formGroup.fcl,
+        "ku": formGroup.ku/100,
+        "kd": formGroup.kd/100,
+        "xt": formGroup.xt/100,
+        "yde": formGroup.Yinput,
+        "taños": formGroup.taños,
+        "crecimiento_anual": formGroup.gInpunt/100,
+        "majustes": data.majustes ,
+        "tasaimpuesto": formGroup.timpuestos/100,
+      }
+
+      return this.cajaService.getCajaTablaFlujo(payload);
+
+
+    })
+    forkJoin(observables).subscribe((responses:any[])=>{
+
+      initvalue.listaAjustes=responses.map((response,index) => {
+
+        if(response.length>0){
+          initvalue.listaAjustes[index].vl= response[0].vl;
+        }
+        return initvalue.listaAjustes[index];
+      })
+
+
+
+
+      if (initvalue.listaAjustes.length > 1) {
+
+        initvalue.listaAjustes = initvalue.listaAjustes.map((value, index) => {
+
+          if (index > 0) {
+
+            value.variacion = value.vl - initvalue.listaAjustes[0].vl;
+            value.percent = (value.vl - initvalue.listaAjustes[0].vl) / initvalue.listaAjustes[0].vl;
+
+
+          }
+          return value;
+
+        })
+
+
+      }
+
+
+      initvalue.listaAjustes=initvalue.listaAjustes.map((value, index) => {
+
+
+
+        if (index == initvalue.listaAjustes.length - 2) {
+          value.infinito = value.percent;
+        } else {
+          if(initvalue.listaAjustes.length>2){
+            value.infinito = initvalue.listaAjustes[initvalue.listaAjustes.length - 2].percent
+          }
+          value.infinito = 0;
+
+        }
+
+
+
+        return value;
+
+
+      })
+      this._data.next(false);
+      this._ajusteagrado.next(0);
+      this.listAllSimulaciones[indexid]=initvalue;
+
+
+
+
+
+
+
     })
 
 
@@ -198,11 +339,15 @@ export class SimulacionService {
 
 
 
-        if (index == initvalue.listaAjustes.length - 2) {
-          value.infinito = value.percent;
-        } else {
+      if (index == initvalue.listaAjustes.length - 2) {
+        value.infinito = value.percent;
+      } else {
+        if(initvalue.listaAjustes.length>2){
           value.infinito = initvalue.listaAjustes[initvalue.listaAjustes.length - 2].percent
         }
+        value.infinito = 0;
+
+      }
 
 
 
@@ -223,8 +368,99 @@ export class SimulacionService {
 
 
   }
+  calcularSimulacionFinito(data:any,actuagrupo:FormGroup){
+
+    this.calcularFinito();
 
 
+    this.listAllSimulaciones.forEach((initvalue, indice) => {
+
+      let formGroup=initvalue.flujodata;
+
+      let payload={
+        "flujo_anual": formGroup.fcl,
+        "ku": formGroup.ku/100,
+        "kd": formGroup.kd/100,
+        "xt": formGroup.xt/100,
+        "yde": formGroup.Yinput,
+        "taños": formGroup.taños,
+        "crecimiento_anual": formGroup.gInpunt/100,
+        "majustes": actuagrupo.getRawValue().majustes ,
+        "tasaimpuesto": formGroup.timpuestos/100,
+      }
+
+
+      this.cajaService.getCajaTablaFlujo(payload).subscribe((response:any[])=>{
+
+          if(response.length>0){
+
+            let vl=response[0].vl;
+
+            initvalue.listaAjustes.push({
+              majustes: data.majustes,
+              ln: Math.log(data.majustes),
+              vl: vl,
+              variacion: 0,
+              percent: 0,
+              infinito: 0,
+              vo69: 0,
+              grupodata: actuagrupo.getRawValue()
+
+            })
+
+            if (initvalue.listaAjustes.length > 1) {
+
+              initvalue.listaAjustes = initvalue.listaAjustes.map((value, index) => {
+
+                if (index > 0) {
+
+                  value.variacion = value.vl - initvalue.listaAjustes[0].vl;
+                  value.percent = (value.vl - initvalue.listaAjustes[0].vl) / initvalue.listaAjustes[0].vl;
+
+
+                }
+                return value;
+
+              })
+
+
+            }
+            console.log(initvalue)
+            this._data.next(false);
+            this._ajusteagrado.next(0);
+
+          }else{
+
+            initvalue.listaAjustes.push({
+              majustes: data.majustes,
+              ln: Math.log(data.majustes),
+              vl: 0,
+              variacion: 0,
+              percent: 0,
+              infinito: 0,
+              wm: 0,
+              ke: 0,
+              kdm: 0,
+              kum: 0,
+              vo69: 0,
+              grupodata: actuagrupo.getRawValue()
+
+            })
+
+            initvalue=this.calcularSimulacionActualFinito(initvalue.flujodata,initvalue,indice)
+            this._data.next(false);
+            this._ajusteagrado.next(0);
+
+          }
+
+
+      })
+
+    })
+
+
+
+  }
   calcularSimulacion(data: any, actuagrupo: FormGroup) {
 
 

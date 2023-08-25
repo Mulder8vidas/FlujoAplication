@@ -1,0 +1,12 @@
+
+
+<form [formGroup]="FormCalculo" style="zoom: 95%;" (submit)="calcular()">
+  <div class="inputcss salt">
+    <label for="majustes">M (ajustes) </label>
+    <input class="form-control" formControlName="majustes" id="majustes" style="background: rgb(9,132,227,.8)"
+           type="number">
+  </div>
+
+  <button class="btn"  type="submit" *ngIf="data==null" >Guardar M Ajustes </button>
+</form>
+

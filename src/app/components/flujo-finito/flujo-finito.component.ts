@@ -1,14 +1,14 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SimulacionService, TablaCalculo} from "../../service/simulacion.service";
+import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
+import {SimulacionService} from "../../service/simulacion.service";
 
 @Component({
-  selector: 'app-flujo',
-  templateUrl: './flujo.component.html',
-  styleUrls: ['./flujo.component.css']
+  selector: 'app-flujo-finito',
+  templateUrl: './flujo-finito.component.html',
+  styleUrls: ['./flujo-finito.component.css']
 })
-export class FlujoComponent implements OnInit,AfterViewInit{
+export class FlujoFinitoComponent implements OnInit,AfterViewInit {
   ngOnInit(): void {
 
 
@@ -25,7 +25,6 @@ export class FlujoComponent implements OnInit,AfterViewInit{
     Yinput: new FormControl('', Validators.required),
     taños: new FormControl('', Validators.required),
     gInpunt: new FormControl('', Validators.required),
-    ftotal: new FormControl({value: '', disabled: true}),
     timpuestos: new FormControl({value: '', disabled: false}),
 
   })
@@ -43,15 +42,21 @@ export class FlujoComponent implements OnInit,AfterViewInit{
   ngAfterViewInit(): void {
 
   }
+  guardarDatos2() {
+    this.guardarDatos()
+    this.guardarDatos()
+  }
 
   guardarDatos() {
     let simulacionActual=this.simulacionService.listAllSimulaciones[this.id];
 
 
-    this.simulacionService.calcularActual(this.formGroup);
+    /*this.simulacionService.calcularActual(this.formGroup);*/
 
 
-    this.simulacionService.listAllSimulaciones[this.id]=this.simulacionService.calcularSimulacionActual(this.formGroup.getRawValue(),simulacionActual);
+
+      this.simulacionService.calcularSimulacionActualFinito(this.formGroup.getRawValue(),simulacionActual,this.id);
+
 
 
   }

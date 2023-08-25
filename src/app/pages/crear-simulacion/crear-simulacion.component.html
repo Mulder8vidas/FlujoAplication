@@ -63,6 +63,7 @@
                   <button class="btn" (click)="showModalDialog()" >Agregar M Ajustes</button>
                   <button class="btn" (click)="calcularFlujoTotal()" >Calcular Flujo Total</button>
                   <button class="btn" (click)="simulacionService.cambiarVariable()" >Cambio de variables</button>
+                  <button class="btn" (click)="mostrarConsolidado()" >Consolidado</button>
                   <p-dialog header="Flujo con M ajustes" [(visible)]="displayModal"  [modal]="true" [dismissableMask]="true" [rtl]="true" [style]="{width: '30vw'}"
                             [draggable]="false" [resizable]="false" (close)="closeData($event)">
                     <app-m-ajustes></app-m-ajustes>

@@ -114,6 +114,9 @@ export class HomeAppComponent implements AfterViewInit{
     localStorage.clear();
     this.router.navigate([''])
   }
+  simulacion() {
+    this.router.navigate(['/crear-simulacion-finito'])
+  }
 
   applyFormat(controlName: string,decimal:number) {
     const control = this.FormCalculo.get(controlName);
